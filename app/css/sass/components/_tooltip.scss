@@ -1,0 +1,116 @@
+.tooltip {
+  position: relative;
+}
+
+.tooltip-popup {
+  box-sizing: border-box;
+  position: absolute;
+  z-index: 99;
+  display: inline-block;
+  padding: 0.25em 0.25em;
+  font-size: 0.8em;
+  line-height: 1.5;
+  text-align: center;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  border-style: solid;
+  border-width: 1px;
+  border-radius: 0.25em;
+  outline: 0;
+
+  &:before,
+  &:after {
+    position: absolute;
+    width: 0;
+    height: 0;
+    pointer-events: none;
+    content: " ";
+    border: solid transparent;
+    right: initial;
+    bottom: initial;
+  }
+
+  &::before {
+    border-width: 6px;
+  }
+
+  &::after {
+    border-width: 5px;
+  }
+
+  &.left {
+    top: -50%;
+    right: calc(100% + 0.5em);
+
+    &:before,
+    &:after {
+      top: 50%;
+      left: 100%;
+    }
+
+    &:before {
+      margin-top: -6px;
+    }
+
+    &:after {
+      margin-top: -5px;
+    }
+  }
+
+  &.top {
+    top: -200%;
+    left: 0;
+
+    &:before,
+    &:after {
+      top: 100%;
+      left: 50%;
+    }
+
+    &:before {
+      margin-left: -6px;
+    }
+
+    &:after {
+      margin-left: -5px;
+    }
+  }
+
+  &.right {
+    top: -50%;
+    left: calc(100% + 0.5em);
+
+    &:before,
+    &:after {
+      top: 50%;
+      right: 100%;
+    }
+
+    &:before {
+      margin-top: -6px;
+    }
+
+    &:after {
+      margin-top: -5px;
+    }
+  }
+
+  &.bottom {
+    top: 150%;
+    left: 0;
+
+    &:before,
+    &:after {
+      bottom: 100%;
+      left: 50%;
+    }
+
+    &:before {
+      margin-left: -6px;
+    }
+
+    &:after {
+      margin-left: -5px;
+    }
+  }
+}

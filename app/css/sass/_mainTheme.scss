@@ -1,0 +1,15 @@
+@import './themes/themeVar';
+
+.component-light {
+  @import './themes/lightThemeVal';
+  @import './components/scrollbar';
+  background: $bg-color-1;
+  color: $font-color-1;
+}
+
+.component-dark {
+  @import './themes/darkThemeVal';
+  @import './components/scrollbar';
+  background: $bg-color-1;
+  color: $font-color-1;
+}

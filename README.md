@@ -1,2 +1,1 @@
-# textEditor
-simple text editor
+first commit 

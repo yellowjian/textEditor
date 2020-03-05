@@ -1,0 +1,47 @@
+{
+  "name": "hj-common-components",
+  "version": "1.0.5",
+  "description": "common ui components",
+  "main": "index.js",
+  "scripts": {
+    "dev": "webpack-dev-server --watch --process --colors",
+    "build": "webpack",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "yellowjian",
+  "license": "ISC",
+  "homepage": "https://github.com/yellowjian/components.git",
+  "dependencies": {
+    "@emotion/core": "^10.0.17",
+    "classnames": "^2.2.6",
+    "express": "^4.17.1",
+    "immutable": "^4.0.0-rc.12",
+    "react": "^16.11.0",
+    "react-dom": "^16.11.0",
+    "react-redux": "^7.1.3",
+    "redux": "^4.0.5",
+    "redux-logger": "^3.0.6",
+    "redux-observable": "^1.2.0",
+    "rxjs": "^6.5.4"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.6.2",
+    "@babel/preset-env": "^7.6.2",
+    "@babel/preset-es2015": "^7.0.0-beta.53",
+    "@babel/preset-react": "^7.0.0",
+    "@babel/preset-stage-3": "^7.8.3",
+    "@emotion/babel-preset-css-prop": "^10.0.27",
+    "babel-loader": "^8.0.6",
+    "clean-webpack-plugin": "^3.0.0",
+    "css-loader": "^3.2.0",
+    "file-loader": "^4.2.0",
+    "html-webpack-plugin": "^3.2.0",
+    "mini-css-extract-plugin": "^0.8.0",
+    "minimist": "^1.2.0",
+    "node-sass": "^4.13.0",
+    "sass-loader": "^8.0.0",
+    "uglifyjs-webpack-plugin": "^2.2.0",
+    "webpack": "^4.41.2",
+    "webpack-cli": "^3.3.10"
+  }
+}

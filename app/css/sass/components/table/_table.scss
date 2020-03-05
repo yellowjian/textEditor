@@ -1,0 +1,30 @@
+@import '../scrollbar';
+
+.table {
+    width: 100%;
+    word-break: break-all;
+    border-collapse: collapse;
+    border-spacing: 0;
+    .table-header {
+        th {
+            border: 0;
+            padding: 0.25em 0.75em;
+            text-align: left;
+            .icon-padding {
+                padding-left: 0.25em;
+            }
+        }
+    }
+    .table-body {
+        td {
+            border: 0;
+            padding: 0.25em 0.75em;
+            text-align: left;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            white-space: nowrap;
+            line-height: 1em;
+        }
+    }
+    
+}

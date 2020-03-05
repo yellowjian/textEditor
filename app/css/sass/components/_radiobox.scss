@@ -1,0 +1,33 @@
+.radiobox {
+  display: inline-block;
+  text-align: left;
+  // box-sizing: border-box;
+  padding-left: 1.5em;
+  line-height: 1em;
+
+  &::before,
+  &::after {
+    content: '';
+    top: 0;
+    left: 0;
+    border-radius: 50%;
+    position: absolute;
+  }
+
+  &::before {
+    width: 1em;
+    height: 1em;
+  }
+
+  &::after {
+    width: 0.5em;
+    height: 0.5em;
+    margin: 0.25em;
+    border-color: transparent;
+  }
+
+  &.disabled,
+  &:disabled {
+    @include disabled()
+  }
+}

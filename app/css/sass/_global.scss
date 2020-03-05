@@ -1,0 +1,54 @@
+$elementFontSize: 1rem;
+$bodyFontSize: 1rem;
+
+* {
+  padding: 0;
+  margin: 0;
+  outline: none;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  height: 100%;
+}
+
+body {
+  font-family: interstate, sans-serif;
+  font-size: $bodyFontSize;
+  font-weight: 100;
+  cursor: default;
+  overflow-x: hidden;
+  height: 100%;
+}
+
+li {
+  list-style: none;
+}
+
+input,
+textarea,
+select,
+button {
+  font-family: interstate, sans-serif;
+  font-size: $elementFontSize;
+}
+
+.root {
+  height: 100%;
+}
+
+.clearfix {
+  &:after {
+    visibility: hidden;
+    display: block;
+    font-size: 0px;
+    content: " ";
+    clear: both;
+    height: 0px;
+  }
+}

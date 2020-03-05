@@ -1,0 +1,9 @@
+.scrollbar-x {
+  overflow-x: auto;
+  @include scrollBar($scrollbar-bg, $scrollbar-thumb-bg, $scrollbar-thumb-bg-hover, $scrollbar-thumb-bg-active)
+}
+
+.scrollbar-y {
+  overflow-y: auto;
+  @include scrollBar($scrollbar-bg, $scrollbar-thumb-bg, $scrollbar-thumb-bg-hover, $scrollbar-thumb-bg-active)
+}

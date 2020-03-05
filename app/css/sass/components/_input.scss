@@ -1,0 +1,20 @@
+.input {
+  box-sizing: border-box;
+  list-style: none;
+  position: relative;
+  display: inline-block;
+  height: 2em;
+  padding: 0.25em 0.5em;
+  font-size: 1em;
+  line-height: 1.5;
+  transition: all .3s;
+  border-width: 1px;
+  border-style: solid;
+  transition: all 0.3s;
+  outline: 0;
+  cursor: auto;
+
+  &:not(.disabled):focus {
+    outline: 0;
+  }
+}
