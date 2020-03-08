@@ -1,3 +1,4 @@
+'use strict'
 import React, { useState, useEffect, useRef, Fragment } from 'react'
 import { render } from 'react-dom'
 import { connect } from 'react-redux'
@@ -5,8 +6,9 @@ import withThemeContext from '../../hoc/withThemeContext'
 import { getCSS } from '../../utils/utils'
 import { css } from '@emotion/core'
 import constants from '../../utils/constants'
+import { SketchPicker } from 'react-color'
 
-function Bold(props) {
+function ForeColor(props) {
   const { data, theme, pureMenu = false } = props
   const themeConfig = theme.config
   const editor = data.get('editor')
@@ -16,24 +18,26 @@ function Bold(props) {
       color: getCSS(themeConfig.button.active.fontColor)
     }
   })
-  const boldClick = (e) => {
-    let isSeleEmpty = editor.selection.isSelectionEmpty()
-    if(isSeleEmpty) {
-      editor.selection.createEmptyRange()
-    }
-    editor.cmd.execCmd('bold')
-    if (isSeleEmpty) {
-      editor.selection.collapseRange()
-      editor.selection.restoreSelection()
-    }
+  const [display, setDisplay] = useState(false)
+  const [color, setColor] = useState('#ffffff')
+  const handleChange = ({ hex }) => console.log(hex)
+  const handleClick = () => {
+    setDisplay(!display)
+  }
+  const handleClose = () => {
+    setDisplay(false)
   }
   return (
-    <div className="bold">
+    <div className="pencil2">
       <i
-        className={`menu-icon-bold`}
+        className={`menu-icon-pencil2`}
         css={menuIconTheme}
-        onClick={boldClick}
+        onClick={ handleClick }
       ></i>
+      { display ? <div className='popover'>
+          <div className='cover' onClick={ handleClose }/>
+          <SketchPicker color={ color } onChange={ handleChange } />
+        </div> : null }
     </div>
   ) 
 }
@@ -43,4 +47,4 @@ const mapStateToProps = (state, ownProps) => {
   }
 }
 
-export default connect(mapStateToProps)(withThemeContext(Bold))
+export default connect(mapStateToProps)(withThemeContext(ForeColor))

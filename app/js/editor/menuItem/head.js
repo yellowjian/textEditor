@@ -8,7 +8,7 @@ import Dropdown from '../../components/dropdown/dropdown'
 import constants from '../../utils/constants'
 
 function Head(props) {
-  const { theme, pureMenu = false } = props
+  const { theme } = props
   const themeConfig = theme.config
   const menuIconTheme = css({
     color: getCSS(themeConfig.button.fontColor),

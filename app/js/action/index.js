@@ -13,8 +13,13 @@ const updateTheme = appTheme => ({
   type: Types.UPDATE_THEME,
   appTheme
 })
+const updateEditor = editor => ({
+  type: Types.UPDATE_EDITOR,
+  editor
+})
 export default {
   initApplication,
   updateData,
-  updateTheme
+  updateTheme,
+  updateEditor
 }

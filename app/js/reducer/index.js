@@ -15,6 +15,9 @@ export default function initReducer(state = initState, action) {
     case types.UPDATE_THEME:
       state = state.set('appTheme', action.appTheme)
       break
+    case types.UPDATE_EDITOR:
+      state = updateStateByKeys(state, ['editor'], action.editor)
+      break
   }
   return state
 }

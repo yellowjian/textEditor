@@ -9,7 +9,7 @@ import { getCSS } from '../utils/utils'
 import { css } from '@emotion/core'
 
 function TextEditor(props) {
-  const { theme } = props
+  const { theme, updateEditorAction } = props
   const themeConfig = theme.config
   const toolbarRef = useRef()
   const textContainerRef = useRef()
@@ -21,8 +21,8 @@ function TextEditor(props) {
       textContainerRef.current,
       textEditorRef.current
     )
-    // console.log(editor)
     editor.create()
+    updateEditorAction(editor)
   }, [])
 
   const textEditorTheme = css({
@@ -36,6 +36,9 @@ function TextEditor(props) {
     )}`,
     '&:not(.disabled):focus': {
       borderColor: getCSS(themeConfig.input.active.borderColor)
+    },
+    '& a': {
+      color: getCSS(themeConfig.linkColor)
     }
   })
   return (
@@ -45,6 +48,7 @@ function TextEditor(props) {
       </div>
       <div ref={textContainerRef} className="text-container">
         <div
+          id='text_editor'
           ref={textEditorRef}
           className="text-editor scrollbar-y"
           css={textEditorTheme}
@@ -61,7 +65,7 @@ const mapStateToProps = (state, ownProps) => {
 }
 
 const mapDispatchToProps = {
-  updateThemeAction: Actions.updateTheme
+  updateEditorAction: Actions.updateEditor
 }
 export default withThemeContext(
   connect(mapStateToProps, mapDispatchToProps)(TextEditor)

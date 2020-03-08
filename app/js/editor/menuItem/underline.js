@@ -6,7 +6,7 @@ import { getCSS } from '../../utils/utils'
 import { css } from '@emotion/core'
 import constants from '../../utils/constants'
 
-function Bold(props) {
+function Underline(props) {
   const { data, theme, pureMenu = false } = props
   const themeConfig = theme.config
   const editor = data.get('editor')
@@ -16,23 +16,23 @@ function Bold(props) {
       color: getCSS(themeConfig.button.active.fontColor)
     }
   })
-  const boldClick = (e) => {
+  const italicClick = (e) => {
     let isSeleEmpty = editor.selection.isSelectionEmpty()
     if(isSeleEmpty) {
       editor.selection.createEmptyRange()
     }
-    editor.cmd.execCmd('bold')
+    editor.cmd.execCmd('underline')
     if (isSeleEmpty) {
       editor.selection.collapseRange()
       editor.selection.restoreSelection()
     }
   }
   return (
-    <div className="bold">
+    <div className="underline">
       <i
-        className={`menu-icon-bold`}
+        className={`menu-icon-underline`}
         css={menuIconTheme}
-        onClick={boldClick}
+        onClick={italicClick}
       ></i>
     </div>
   ) 
@@ -43,4 +43,4 @@ const mapStateToProps = (state, ownProps) => {
   }
 }
 
-export default connect(mapStateToProps)(withThemeContext(Bold))
+export default connect(mapStateToProps)(withThemeContext(Underline))

@@ -58,6 +58,13 @@ function getPasteHtml(e, filterStyle, ignoreImg) {
   return pasteHtml
 }
 
+function replaceHtmlSymbol(html) {
+  if (html == null) {
+      return ''
+  }
+  return html.replace(/</gm, '&lt;').replace(/>/gm, '&gt;').replace(/"/gm, '&quot;').replace(/(\r\n|\r|\n)/g, '<br/>')
+}
+
 function getPasteText(e) {
   let clipboardData =
     e.clipboardData || (e.originalEvent && e.originalEvent.clipboardData)
@@ -77,4 +84,7 @@ function addListenerMulti(element, eventNames, listener) {
   }
 }
 
-export { getRandom, isContain, getPasteHtml, getPasteText, addListenerMulti }
+function isFunction(fn) {
+  return typeof fn === 'function';
+}
+export { getRandom, isContain, getPasteHtml, getPasteText, addListenerMulti, isFunction }

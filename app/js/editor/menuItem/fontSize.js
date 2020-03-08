@@ -4,36 +4,32 @@ import { connect } from 'react-redux'
 import withThemeContext from '../../hoc/withThemeContext'
 import { getCSS } from '../../utils/utils'
 import { css } from '@emotion/core'
+import cx from 'classnames'
+import Dropdown from '../../components/dropdown/dropdown'
 import constants from '../../utils/constants'
 
-function Bold(props) {
-  const { data, theme, pureMenu = false } = props
+function FontSize(props) {
+  const { theme } = props
   const themeConfig = theme.config
-  const editor = data.get('editor')
   const menuIconTheme = css({
     color: getCSS(themeConfig.button.fontColor),
     '&:hover': {
       color: getCSS(themeConfig.button.active.fontColor)
     }
   })
-  const boldClick = (e) => {
-    let isSeleEmpty = editor.selection.isSelectionEmpty()
-    if(isSeleEmpty) {
-      editor.selection.createEmptyRange()
-    }
-    editor.cmd.execCmd('bold')
-    if (isSeleEmpty) {
-      editor.selection.collapseRange()
-      editor.selection.restoreSelection()
-    }
+  const fontRef = useRef()
+  const customBtn = () => {
+    return <i className={`menu-icon-text-heigh`} css={menuIconTheme}></i>
   }
   return (
-    <div className="bold">
-      <i
-        className={`menu-icon-bold`}
-        css={menuIconTheme}
-        onClick={boldClick}
-      ></i>
+    <div className="font" ref={fontRef}>
+      <Dropdown
+        options={constants.fontOptions}
+        width={200}
+        customBtn={customBtn()}
+        value="normal"
+        onChange={val => console.log(val)}
+      ></Dropdown>
     </div>
   ) 
 }
@@ -43,4 +39,4 @@ const mapStateToProps = (state, ownProps) => {
   }
 }
 
-export default connect(mapStateToProps)(withThemeContext(Bold))
+export default connect(mapStateToProps)(withThemeContext(FontSize))
