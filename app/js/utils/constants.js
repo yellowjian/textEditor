@@ -1,3 +1,4 @@
+import React from 'react'
 import Head from '../editor/menuItem/head'
 import Bold from '../editor/menuItem/bold'
 

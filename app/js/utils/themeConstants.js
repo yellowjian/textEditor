@@ -10,11 +10,11 @@ const THEMECONFIG = {
       insetColor: 'shadow-color-2',
       hover: {
         shadowColor: 'shadow-color-1',
-        insetColor: 'link-color-1'
+        insetColor: 'link-color-1',
       },
       checked: {
         backgroundColor: 'link-color-1',
-        color: 'bg-color-1'
+        color: 'bg-color-1',
       }
     },
     button: {
@@ -27,7 +27,7 @@ const THEMECONFIG = {
       borderColorLeft: 'shadow-color-1',
       hover: {
         fontColor: 'link-color-3',
-        backgroundColor: 'gray-8'
+        backgroundColor: 'gray-8',
       },
       active: {
         fontColor: 'white',
@@ -57,7 +57,7 @@ const THEMECONFIG = {
     icon: {
       fontColor: 'link-color-1',
       active: {
-        fontColor: 'white'
+        fontColor: 'white',
       }
     },
     tooltip: {
@@ -65,7 +65,7 @@ const THEMECONFIG = {
       borderColorTop: 'shadow-color-1',
       borderColorRight: 'shadow-color-2',
       borderColorBottom: 'shadow-color-2',
-      borderColorLeft: 'shadow-color-1'
+      borderColorLeft: 'shadow-color-1',
     }
   },
   light: {
@@ -79,11 +79,11 @@ const THEMECONFIG = {
       insetColor: 'shadow-color-4',
       hover: {
         shadowColor: 'shadow-color-1',
-        insetColor: 'blue'
+        insetColor: 'blue',
       },
       checked: {
         backgroundColor: 'blue',
-        color: 'white'
+        color: 'white',
       }
     },
     button: {
@@ -96,7 +96,7 @@ const THEMECONFIG = {
       borderColorLeft: 'shadow-color-3',
       hover: {
         fontColor: 'link-color-2',
-        backgroundColor: 'gray-1'
+        backgroundColor: 'gray-1',
       },
       active: {
         fontColor: 'gray-11',
@@ -126,7 +126,7 @@ const THEMECONFIG = {
     icon: {
       fontColor: 'blue',
       active: {
-        fontColor: 'gray-11'
+        fontColor: 'gray-11',
       }
     },
     tooltip: {
@@ -134,7 +134,7 @@ const THEMECONFIG = {
       borderColorTop: 'shadow-color-3',
       borderColorRight: 'shadow-color-4',
       borderColorBottom: 'shadow-color-4',
-      borderColorLeft: 'shadow-color-3'
+      borderColorLeft: 'shadow-color-3',
     }
   }
 }
