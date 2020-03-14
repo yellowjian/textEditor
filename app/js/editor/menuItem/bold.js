@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import withThemeContext from '../../hoc/withThemeContext'
 import { getCSS } from '../../utils/utils'
 import { css } from '@emotion/core'
-import constants from '../../utils/constants'
+import constants from '../constants'
 
 function Bold(props) {
   const { data, theme, pureMenu = false } = props
@@ -33,6 +33,7 @@ function Bold(props) {
         className={`menu-icon-bold`}
         css={menuIconTheme}
         onClick={boldClick}
+        title='字体粗细'
       ></i>
     </div>
   ) 

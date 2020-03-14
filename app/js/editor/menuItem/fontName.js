@@ -6,7 +6,7 @@ import { getCSS } from '../../utils/utils'
 import { css } from '@emotion/core'
 import cx from 'classnames'
 import Dropdown from '../../components/dropdown/dropdown'
-import constants from '../../utils/constants'
+import constants from '../constants'
 
 function FontName(props) {
   const { theme } = props

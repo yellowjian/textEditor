@@ -8,7 +8,7 @@ import { css } from '@emotion/core'
 import constants from '../constants'
 import { SketchPicker } from 'react-color'
 
-function ForeColor(props) {
+function BackColor(props) {
   const { data, theme, } = props
   const themeConfig = theme.config
   const editor = data.get('editor')
@@ -28,9 +28,9 @@ function ForeColor(props) {
     setDisplay(false)
   }
   return (
-    <div className="pencil2">
+    <div className="paint-brush">
       <i
-        className={`menu-icon-pencil2`}
+        className={`menu-icon-paint-brush`}
         css={menuIconTheme}
         onClick={ handleClick }
       ></i>
@@ -47,4 +47,4 @@ const mapStateToProps = (state, ownProps) => {
   }
 }
 
-export default connect(mapStateToProps)(withThemeContext(ForeColor))
+export default connect(mapStateToProps)(withThemeContext(BackColor))

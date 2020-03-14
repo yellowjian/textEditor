@@ -1,12 +1,13 @@
 import React from 'react'
-import Head from '../editor/menuItem/head'
-import Bold from '../editor/menuItem/bold'
-import FontSize from '../editor/menuItem/fontSize'
-import FontName from '../editor/menuItem/fontName'
-import Italic from '../editor/menuItem/italic'
-import Underline from '../editor/menuItem/underline'
-import Strikethrough from '../editor/menuItem/strikethrough'
-import ForeColor from '../editor/menuItem/foreColor'
+import Head from './menuItem/head'
+import Bold from './menuItem/bold'
+import FontSize from './menuItem/fontSize'
+import FontName from './menuItem/fontName'
+import Italic from './menuItem/italic'
+import Underline from './menuItem/underline'
+import Strikethrough from './menuItem/strikethrough'
+import ForeColor from './menuItem/foreColor'
+import BackColor from './menuItem/backColor'
 
 export default {
   menusItem: {
@@ -18,6 +19,7 @@ export default {
     underline: <Underline></Underline>,
     strikeThrough: <Strikethrough></Strikethrough>,
     foreColor: <ForeColor></ForeColor>,
+    backColor: <BackColor></BackColor>,
   },
   headOptions: [
     { label: 'H1', value: 'H1' },
@@ -36,5 +38,7 @@ export default {
     { label: '宋体', value: '宋体' },
     { label: '微软雅黑', value: '微软雅黑' },
     { label: 'Arial', value: 'Arial' },
+    { label: 'Tahoma', value: 'Tahoma' },
+    { label: 'Verdana', value: 'Verdana' },
   ],
 }

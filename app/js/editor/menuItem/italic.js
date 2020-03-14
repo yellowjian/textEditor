@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import withThemeContext from '../../hoc/withThemeContext'
 import { getCSS } from '../../utils/utils'
 import { css } from '@emotion/core'
-import constants from '../../utils/constants'
+import constants from '../constants'
 
 function Italic(props) {
   const { data, theme, pureMenu = false } = props

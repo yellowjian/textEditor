@@ -4,32 +4,30 @@ import { connect } from 'react-redux'
 import withThemeContext from '../../hoc/withThemeContext'
 import { getCSS } from '../../utils/utils'
 import { css } from '@emotion/core'
-import cx from 'classnames'
-import Dropdown from '../../components/dropdown/dropdown'
 import constants from '../constants'
 
-function FontSize(props) {
-  const { theme } = props
+function Link(props) {
+  const { data, theme, pureMenu = false } = props
   const themeConfig = theme.config
+  const editor = data.get('editor')
   const menuIconTheme = css({
     color: getCSS(themeConfig.button.fontColor),
     '&:hover': {
       color: getCSS(themeConfig.button.active.fontColor)
     }
   })
-  const fontRef = useRef()
-  const customBtn = () => {
-    return <i className={`menu-icon-text-heigh`} css={menuIconTheme}></i>
+  const linkClick = (e) => {
+    let linkelem = void 0
+
   }
   return (
-    <div className="font" ref={fontRef}>
-      <Dropdown
-        options={constants.fontOptions}
-        width={200}
-        customBtn={customBtn()}
-        value="normal"
-        onChange={val => console.log(val)}
-      ></Dropdown>
+    <div className="link">
+      <i
+        className={`menu-icon-link`}
+        css={menuIconTheme}
+        onClick={linkClick}
+        title='插入链接'
+      ></i>
     </div>
   ) 
 }
@@ -39,4 +37,4 @@ const mapStateToProps = (state, ownProps) => {
   }
 }
 
-export default connect(mapStateToProps)(withThemeContext(FontSize))
+export default connect(mapStateToProps)(withThemeContext(Link))
