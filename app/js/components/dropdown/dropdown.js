@@ -116,7 +116,7 @@ const Dropdown = forwardRef((props, ref) => {
         {options.map((item, index) => {
           return (
             <DropdownItem
-              key={index}
+              key={`${id}_item_${index}`}
               {...props}
               label={item.label}
               isSelected={selectedVals.indexOf(item.value) != -1}

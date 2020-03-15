@@ -8,6 +8,7 @@ import Underline from './menuItem/underline'
 import Strikethrough from './menuItem/strikethrough'
 import ForeColor from './menuItem/foreColor'
 import BackColor from './menuItem/backColor'
+import Link from './menuItem/link'
 
 export default {
   menusItem: {
@@ -20,6 +21,7 @@ export default {
     strikeThrough: <Strikethrough></Strikethrough>,
     foreColor: <ForeColor></ForeColor>,
     backColor: <BackColor></BackColor>,
+    link: <Link></Link>
   },
   headOptions: [
     { label: 'H1', value: 'H1' },

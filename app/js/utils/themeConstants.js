@@ -34,6 +34,11 @@ const THEMECONFIG = {
         backgroundColor: 'gray-7'
       }
     },
+    modal: {
+      fontColor: 'link-color-1',
+      borderColor: 'bg-color-1',
+      backgroundColor: 'bg-color-2',
+    }, 
     input: {
       color: 'text-color-2',
       backgroundColor: 'bg-color-3',
@@ -114,6 +119,11 @@ const THEMECONFIG = {
         borderColor: 'blue'
       }
     },
+    modal: {
+      fontColor: 'blue',
+      borderColor: 'white',
+      backgroundColor: 'white',
+    }, 
     dropdown: {
       hover: {
         backgroundColor: 'white'
