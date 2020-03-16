@@ -25,7 +25,6 @@ const Dropdown = forwardRef((props, ref) => {
   const dropdownRef = useRef()
   const [id, setId] = useState(`dropdown_${uniqueCode++}`)
   const [isOpen, setIsOpen] = useState(false)
-  const [selected, setSelected] = useState('')
   const [selectedVals, setSelectedVals] = useState([].concat(value))
   const [filterOptions, setFilterOptions] = useState([])
 
@@ -33,7 +32,7 @@ const Dropdown = forwardRef((props, ref) => {
     setFilterOptions(options.filter(item => !item.disabled))
   }, [options])
   useEffect(() => {
-    setSelected(value)
+    setSelectedVals([value])
   }, [value])
   const dropdownClass = cx('dropdown', { active: isOpen }, className)
   const menuClass = cx('dropdown-menu scrollbar-y', { 'pure-menu': pureMenu })

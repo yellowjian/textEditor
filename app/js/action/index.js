@@ -17,9 +17,19 @@ const updateEditor = editor => ({
   type: Types.UPDATE_EDITOR,
   editor
 })
+const updateMenuItem = menuItemStatus => ({
+  type: Types.UPDATE_MENU_ITEM,
+  menuItemStatus
+})
+const updateHeadValue = headVal => ({
+  type: Types.UPDATE_HEAD_VAL,
+  headVal
+})
 export default {
   initApplication,
   updateData,
   updateTheme,
-  updateEditor
+  updateEditor,
+  updateMenuItem,
+  updateHeadValue
 }

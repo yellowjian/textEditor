@@ -30,7 +30,7 @@ export default class Text {
   }
   bindEvent() {
     // 实时保存选取
-    this.saveRangeRealTime()
+    // this.saveRangeRealTime()
 
     // 按回车时的特殊处理
     this.enterKeyHandle()
@@ -50,29 +50,29 @@ export default class Text {
     // 拖拽事件
     this.dragHandle()
   }
-  saveRangeRealTime() {
-    const editor = this.editor
-    const textElem = editor.textElem
+  // saveRangeRealTime() {
+  //   const editor = this.editor
+  //   const textElem = editor.textElem
 
-    // 保存当前的选区
-    function saveRange(e) {
-      // 随时保存选区
-      editor.selection.saveRange()
-      // 更新按钮 ative 状态
-      // editor.menus.changeActive()
-    }
-    // 按键后保存
-    textElem.addEventListener('keyup', saveRange)
-    textElem.addEventListener('mousedown', () => {
-      // mousedown 状态下，鼠标滑动到编辑区域外面，也需要保存选区
-      textElem.addEventListener('mouseleave', saveRange)
-    })
-    textElem.addEventListener('mouseup', () => {
-      saveRange()
-      // 在编辑器区域之内完成点击，取消鼠标滑动到编辑区外面的事件
-      textElem.removeEventListener('mouseleave', saveRange)
-    })
-  }
+  //   // 保存当前的选区
+  //   function saveRange(e) {
+  //     // 随时保存选区
+  //     editor.selection.saveRange()
+  //     // 更新按钮 ative 状态
+  //     editor.changeMenuItemStatus()
+  //   }
+  //   // 按键后保存
+  //   textElem.addEventListener('keyup', saveRange)
+  //   textElem.addEventListener('mousedown', () => {
+  //     // mousedown 状态下，鼠标滑动到编辑区域外面，也需要保存选区
+  //     textElem.addEventListener('mouseleave', saveRange)
+  //   })
+  //   textElem.addEventListener('mouseup', () => {
+  //     saveRange()
+  //     // 在编辑器区域之内完成点击，取消鼠标滑动到编辑区外面的事件
+  //     textElem.removeEventListener('mouseleave', saveRange)
+  //   })
+  // }
   enterKeyHandle() {
     const editor = this.editor
     const textElem = editor.textElem

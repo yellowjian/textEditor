@@ -190,12 +190,26 @@
               width: calc(100% - 1em);
             }
           }
+
+          .code {
+            .text-area {
+              cursor: auto;
+              width: calc(100% - 2em);
+              height: 450px;
+              padding: 1em;
+              margin: 1em;
+              tab-size: 4;
+              text-align: left;
+              resize: none;
+            }
+
+          }
         }
       }
     }
 
     .text-container {
-      height: 300px;
+      height: 600px;
       position: relative;
       padding: 0;
       margin: 0;

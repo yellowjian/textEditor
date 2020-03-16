@@ -9,6 +9,7 @@ import Strikethrough from './menuItem/strikethrough'
 import ForeColor from './menuItem/foreColor'
 import BackColor from './menuItem/backColor'
 import Link from './menuItem/link'
+import Code from './menuItem/code'
 
 export default {
   menusItem: {
@@ -21,12 +22,13 @@ export default {
     strikeThrough: <Strikethrough></Strikethrough>,
     foreColor: <ForeColor></ForeColor>,
     backColor: <BackColor></BackColor>,
-    link: <Link></Link>
+    link: <Link></Link>,
+    code: <Code></Code>,
   },
   headOptions: [
-    { label: 'H1', value: 'H1' },
-    { label: 'H2', value: 'H2' },
-    { label: 'H3', value: 'H3' }
+    { label: 'H1', value: 'h1' },
+    { label: 'H2', value: 'h2' },
+    { label: 'H3', value: 'h3' }
   ],
   fontOptions: [
     { label: 'x-small', value: 'x-small' },

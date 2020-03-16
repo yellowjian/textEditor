@@ -10,6 +10,7 @@ export default {
     'foreColor',
     'backColor',
     'link',
+    'code',
     'list',
     'justify',
     'quote',
@@ -17,7 +18,6 @@ export default {
     'image',
     'table',
     'video',
-    'code',
     'undo',
     'redo'
   ],
