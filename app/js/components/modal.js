@@ -39,6 +39,7 @@ const Modal = forwardRef((props, ref) => {
       left: `${modalPosition.left}px`,
       top: `${modalPosition.top}px`,
     }),
+    display: show? 'block': 'none',
     ...themeCss
   }
   const modalContent = css({
@@ -98,19 +99,17 @@ const Modal = forwardRef((props, ref) => {
   if(onCancel && onOk) {
     let header = getHeader()
     let footer = getFooter()
-    childComponent = <div className='modal-content' css={modalContent}>{header}<div className='modal-body'>{children}</div>{footer}</div>
+    childComponent = <div className='modal-content' css={modalContent}>{header}<div className='modal-body scrollbar-y'>{children}</div>{footer}</div>
   }
   return modalRoot
     ? createPortal(
-        show ? (
-          <BaseComponent
-            {...props}
-            ref={modalRef}
-            themeCss={themeStyle}
-            className={modalClass}
-            renderChildComponent={() => childComponent}
-          />
-        ) : null,
+        <BaseComponent
+          {...props}
+          ref={modalRef}
+          themeCss={themeStyle}
+          className={modalClass}
+          renderChildComponent={() => childComponent}
+        />,
         modalRoot
       )
     : null

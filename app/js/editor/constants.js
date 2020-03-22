@@ -45,4 +45,19 @@ export default {
     { label: 'Tahoma', value: 'Tahoma' },
     { label: 'Verdana', value: 'Verdana' },
   ],
+  languageOptions: [
+    { label: 'javascript', value: 'javascript' },
+    { label: 'html', value: 'html' },
+    { label: 'java', value: 'java' },
+    { label: 'css', value: 'css' },
+    { label: 'scss', value: 'scss' },
+    { label: 'c', value: 'c' },
+    { label: 'c++', value: 'c++' },
+    { label: 'basic', value: 'basic' },
+    { label: 'python', value: 'python' },
+    { label: 'r', value: 'r' },
+    { label: 'sql', value: 'sql' },
+    { label: 'shell', value: 'shell' },
+    { label: 'swift', value: 'swift' },
+  ]
 }

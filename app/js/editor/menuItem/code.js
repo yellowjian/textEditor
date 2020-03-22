@@ -3,14 +3,14 @@ import { render } from 'react-dom'
 import { connect } from 'react-redux'
 import withThemeContext from '../../hoc/withThemeContext'
 import { getCSS } from '../../utils/utils'
+import { escapeHtml } from '../util'
 import { css } from '@emotion/core'
 import constants from '../constants'
 import Modal from '../../components/modal'
 import TextArea from '../../components/textarea'
-// import 'highlight.js/styles/github.css'
-// hljs.registerLanguage('javascript', javascript);
-import hljs from 'highlight.js/lib/highlight'
-import 'highlight.js/styles/hopscotch.css'
+import Dropdown from '../../components/dropdown/dropdown'
+import hljs from 'highlight.js'
+import 'highlight.js/styles/agate.css'
 
 
 function Code(props) {
@@ -24,9 +24,13 @@ function Code(props) {
     }
   })
   const linkRef = useRef()
-  const preRef = useRef()
+  const areaRef = useRef()
+  const codeRef = useRef()
+  const languageRef = useRef()
   const [show, setShow] = useState(false)
+  const [isFirst, setIsFirst] = useState(false)
   const [code, setCode] = useState('')
+  const [language, setLanguage] = useState('javascript')
   const [linkUrl, setLinkUrl] = useState('')
   const linkClick = (e) => {
     setShow(!show)
@@ -43,13 +47,60 @@ function Code(props) {
   const handleCancel = () => {
     setShow(!show)
   }
-  useEffect(() => {
-    hightlightSyntax()
-  }, [show])
+  
   const updateCode = (e) => {
     setCode(e.currentTarget.textContent)
   }
-  const text = <Textarea ref={codeRef} value={code} onChange={(e) => {setCode(e.target.value)}}/>
+  useEffect(() => {
+    let codeArea = areaRef.current && areaRef.current.el
+    if(codeArea && !isFirst) {
+      setIsFirst(true)
+      const events = ['ready', 'load', 'keyup', 'keydown', 'change']
+      events.forEach((item) => {
+        codeArea.addEventListener(item, function() {
+          correctTextareaHight()
+          hightlightSyntax()
+        })
+      })
+    }
+  }, [show])
+
+  useEffect(() => {
+    if (isFirst) {
+      hightlightSyntax()
+    }
+  }, [language])
+
+  HTMLElement.prototype.html = function(str){
+    if(typeof str === 'string') {
+        this.innerHTML = str;
+        return this;
+    } else { 
+        return this.innerHTML;
+    }
+  }
+
+  function correctTextareaHight() {
+    let codeArea = areaRef.current.el
+    let codeShow = codeRef.current
+    let outerHeight = codeArea.offsetHeight 
+    let innerHeight = codeArea.scrollHeight
+    let combinedScrollHeight = innerHeight + 2
+    
+    if (outerHeight < combinedScrollHeight){
+      codeArea.style.height = combinedScrollHeight + 'px'
+      codeShow.style.height = combinedScrollHeight + 'px'
+    }
+  }
+
+  function hightlightSyntax(){
+    let content  = areaRef.current.el.value
+    let codeHolder = codeRef.current
+    var escaped = escapeHtml(content)
+    codeHolder.html(escaped)
+    hljs.highlightBlock(codeHolder)
+  }
+
   return (
     <div className="code" ref={linkRef}>
       <i
@@ -66,8 +117,16 @@ function Code(props) {
         onCancel={handleCancel}
         modalRoot={linkRef.current? linkRef.current: null}
       >
-        {text}
-        <pre><code class="syntax-highight javascript"></code></pre>
+        <div className='code-language' ref={languageRef}>
+          <Dropdown
+            options={constants.languageOptions}
+            width={200}
+            value="javascript"
+            onChange={val => setLanguage(val)}
+          ></Dropdown>
+        </div>
+        <TextArea className='text-area' ref={areaRef} value={code} onChange={(e) => {setCode(e.target.value)}}/>
+        <pre><code ref={codeRef} className={`syntax-highight scrollbar-y ${language}`}></code></pre>
       </Modal> 
     </div>
   ) 

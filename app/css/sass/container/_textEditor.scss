@@ -192,17 +192,56 @@
           }
 
           .code {
-            .text-area {
-              cursor: auto;
-              width: calc(100% - 2em);
-              height: 450px;
-              padding: 1em;
-              margin: 1em;
-              tab-size: 4;
-              text-align: left;
-              resize: none;
+            .code-language {
+              z-index: 3;
+              position: fixed;
+              right: calc(30% + 8px);
+              top: calc(100px + 4em);
             }
 
+            .text-area {
+              font-family: Consolas, Liberation Mono, Courier, monospace;
+              cursor: auto;
+              width: calc(100% - 2em);
+              min-height: 450px;
+              height: auto;
+              margin: 4em 1em 1em 1em;
+              font-size: 14px;
+              padding: 0.5em;
+              tab-size: 4;
+              z-index: 2;
+              line-height: 1.5em;
+              text-align: left;
+              resize: none;
+              overflow: visible;
+              background: transparent;
+              -webkit-text-fill-color: transparent;
+            }
+
+            pre {
+              white-space: pre-wrap;
+              word-wrap: break-word;
+
+              code {
+                background: #000000;
+              }
+            }
+
+            .syntax-highight {
+              font-family: Consolas, Liberation Mono, Courier, monospace;
+              z-index: 1;
+              font-size: 14px;
+              width: calc(100% - 2em);
+              padding: calc(0.5em + 1px);
+              min-height: 450px;
+              height: auto;
+              margin: 4em 1em 1em 1em;
+              line-height: 1.5em;
+              top: 0;
+              position: absolute;
+              overflow: visible;
+              transition: all 0.5s ease-in-out;
+            }
           }
         }
       }

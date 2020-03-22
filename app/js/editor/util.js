@@ -87,4 +87,13 @@ function addListenerMulti(element, eventNames, listener) {
 function isFunction(fn) {
   return typeof fn === 'function';
 }
-export { getRandom, isContain, getPasteHtml, getPasteText, addListenerMulti, isFunction }
+
+function escapeHtml(unsafe) {
+  return unsafe
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;");
+}
+export { getRandom, isContain, getPasteHtml, getPasteText, addListenerMulti, isFunction, escapeHtml }
