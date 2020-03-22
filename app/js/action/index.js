@@ -21,9 +21,9 @@ const updateMenuItem = menuItemStatus => ({
   type: Types.UPDATE_MENU_ITEM,
   menuItemStatus
 })
-const updateHeadValue = headVal => ({
-  type: Types.UPDATE_HEAD_VAL,
-  headVal
+const updateMenuValue = menuItemVal => ({
+  type: Types.UPDATE_MENU_VAL,
+  menuItemVal
 })
 export default {
   initApplication,
@@ -31,5 +31,5 @@ export default {
   updateTheme,
   updateEditor,
   updateMenuItem,
-  updateHeadValue
+  updateMenuValue
 }

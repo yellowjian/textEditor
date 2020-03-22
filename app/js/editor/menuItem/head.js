@@ -10,7 +10,8 @@ import constants from '../constants'
 
 function Head(props) {
   const { theme, data } = props
-  const initHeadVal = data.get('headVal')
+  const initVal = data.get('menuItemVal').toJS()
+  const editor = data.get('editor')
   const themeConfig = theme.config
   const menuIconTheme = css({
     color: getCSS(themeConfig.button.fontColor),
@@ -22,14 +23,22 @@ function Head(props) {
   const customBtn = () => {
     return <i className={`menu-icon-header`} css={menuIconTheme}></i>
   }
+  const handleChange = (val) => {
+    const selectionElem = editor.selection.getSelectionContainerElem()
+    // check multi rows selected
+    if (selectionElem == editor.textElem) {
+      return 
+    }
+    editor.cmd.execCmd('formatBlock', val)
+  }
   return (
     <div className="head" ref={headRef}>
       <Dropdown
         options={constants.headOptions}
         width={200}
         customBtn={customBtn()}
-        value={initHeadVal}
-        onChange={val => console.log(val)}
+        value={initVal.headVal}
+        onChange={handleChange}
       ></Dropdown>
     </div>
   )

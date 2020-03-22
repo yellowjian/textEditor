@@ -31,8 +31,7 @@ function Code(props) {
   const [isFirst, setIsFirst] = useState(false)
   const [code, setCode] = useState('')
   const [language, setLanguage] = useState('javascript')
-  const [linkUrl, setLinkUrl] = useState('')
-  const linkClick = (e) => {
+  const codeClick = (e) => {
     setShow(!show)
     let linkelem = void 0
 
@@ -106,7 +105,7 @@ function Code(props) {
       <i
         className={`menu-icon-terminal`}
         css={menuIconTheme}
-        onClick={linkClick}
+        onClick={codeClick}
         title='插入代码'
       ></i>
       <Modal

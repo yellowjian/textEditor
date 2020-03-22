@@ -9,7 +9,7 @@ import { getCSS } from '../utils/utils'
 import { css } from '@emotion/core'
 
 function TextEditor(props) {
-  const { theme, updateEditorAction, updateMenuItemAction, updateHeadValueAction } = props
+  const { theme, updateEditorAction, updateMenuItemAction, updateMenuValueAction } = props
   const themeConfig = theme.config
   const toolbarRef = useRef()
   const textContainerRef = useRef()
@@ -29,11 +29,11 @@ function TextEditor(props) {
       // 更新按钮 ative 状态
       const curStatus = editor.changeMenuItemStatus()
       updateMenuItemAction(curStatus.status)
-      updateHeadValueAction(curStatus.headVal)
+      updateMenuValueAction(curStatus.vals)
     }
     const textElem = editor.textElem
     // 按键后保存
-    textElem.addEventListener('keyup', saveRange)
+    // textElem.addEventListener('keyup', saveRange)
     textElem.addEventListener('mousedown', () => {
       // mousedown 状态下，鼠标滑动到编辑区域外面，也需要保存选区
       textElem.addEventListener('mouseleave', saveRange)
@@ -87,7 +87,7 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = {
   updateEditorAction: Actions.updateEditor,
   updateMenuItemAction: Actions.updateMenuItem,
-  updateHeadValueAction: Actions.updateHeadValue,
+  updateMenuValueAction: Actions.updateMenuValue,
 }
 export default withThemeContext(
   connect(mapStateToProps, mapDispatchToProps)(TextEditor)

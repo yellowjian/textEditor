@@ -16,7 +16,10 @@ export default class Editor {
   changeMenuItemStatus() {
     const selectionELem = this.selection.getSelectionContainerElem()
     const curStatus = {
-      headVal: '',
+      vals: {
+        headVal: '',
+        listVal: '',
+      },
       status: {
         head: false,
         bold: false,
@@ -27,7 +30,8 @@ export default class Editor {
         strikeThrough: false,
         foreColor: false,
         backColor: false,
-        link: false
+        link: false,
+        list: false
       }
     }
     if(!selectionELem) {
@@ -38,9 +42,15 @@ export default class Editor {
     }
     let headReg = /^h/i
     let cmdHeadValue = this.cmd.queryCommandValue('formatBlock')
-    if(headReg.test(cmdHeadValue)) {
+    let cmdListValue = this.cmd.queryCommandState('insertUnOrderedList') ? 'unsorted-list' : 
+      (this.cmd.queryCommandState('insertOrderedList') ? 'sorted-list': '')
+    if (headReg.test(cmdHeadValue)) {
+      curStatus.status.list = true
+      curStatus.vals.headVal = cmdHeadValue
+    }
+    if (cmdListValue) {
       curStatus.status.head = true
-      curStatus.headVal = cmdHeadValue
+      curStatus.vals.listVal = cmdListValue
     }
     return curStatus
   }

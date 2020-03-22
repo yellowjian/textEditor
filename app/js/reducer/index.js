@@ -4,7 +4,6 @@ import { updateStateByKeys } from '../utils/utils'
 
 let initState = fromJS({
   appTheme: 'light',
-  headVal: '',
   editor: {},
   menuItemStatus: {
     head: false,
@@ -16,7 +15,12 @@ let initState = fromJS({
     strikeThrough: false,
     foreColor: false,
     backColor: false,
-    link: false
+    link: false,
+    list: false,
+  },
+  menuItemVal: {
+    headVal: '',
+    listVal: '',
   }
 })
 
@@ -28,8 +32,8 @@ export default function initReducer(state = initState, action) {
     case types.UPDATE_THEME:
       state = state.set('appTheme', action.appTheme)
       break
-    case types.UPDATE_HEAD_VAL:
-      state = state.set('headVal', action.headVal)
+    case types.UPDATE_MENU_VAL:
+      state = updateStateByKeys(state, ['menuItemVal'], action.menuItemVal)
       break 
     case types.UPDATE_EDITOR:
       state = updateStateByKeys(state, ['editor'], action.editor)

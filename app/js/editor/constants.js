@@ -10,6 +10,10 @@ import ForeColor from './menuItem/foreColor'
 import BackColor from './menuItem/backColor'
 import Link from './menuItem/link'
 import Code from './menuItem/code'
+import List from './menuItem/list'
+import Align from './menuItem/align'
+import Quote from './menuItem/quote'
+import Image from './menuItem/image'
 
 export default {
   menusItem: {
@@ -24,11 +28,16 @@ export default {
     backColor: <BackColor></BackColor>,
     link: <Link></Link>,
     code: <Code></Code>,
+    list: <List></List>,
+    justify: <Align></Align>,
+    quote: <Quote></Quote>,
+    image: <Image></Image>,
   },
   headOptions: [
-    { label: 'H1', value: 'h1' },
-    { label: 'H2', value: 'h2' },
-    { label: 'H3', value: 'h3' }
+    { label: 'H1', value: '<h1>' },
+    { label: 'H2', value: '<h2>' },
+    { label: 'H3', value: '<h3>' },
+    { label: 'H4', value: '<h4>' },
   ],
   fontOptions: [
     { label: 'x-small', value: 'x-small' },
@@ -59,5 +68,14 @@ export default {
     { label: 'sql', value: 'sql' },
     { label: 'shell', value: 'shell' },
     { label: 'swift', value: 'swift' },
+  ],
+  listOptions: [
+    { label: '有序列表', value: 'sorted-list' },
+    { label: '无序列表', value: 'unsorted-list' },
+  ],
+  alignOptions: [
+    { label: '左对齐', value: 'justifyLeft' },
+    { label: '居中', value: 'justifyCenter' },
+    { label: '右对齐', value: 'justifyRight' },
   ]
 }

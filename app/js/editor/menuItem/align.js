@@ -8,10 +8,10 @@ import cx from 'classnames'
 import Dropdown from '../../components/dropdown/dropdown'
 import constants from '../constants'
 
-function List(props) {
+function Align(props) {
   const { theme, data } = props
-  const initVal = data.get('menuItemVal').toJS()
   const themeConfig = theme.config
+  const editor = data.get('editor')
   const menuIconTheme = css({
     color: getCSS(themeConfig.button.fontColor),
     '&:hover': {
@@ -20,16 +20,19 @@ function List(props) {
   })
   const headRef = useRef()
   const customBtn = () => {
-    return <i className={`menu-icon-list2`} css={menuIconTheme}></i>
+    return <i className={`menu-icon-paragraph-left`} css={menuIconTheme}></i>
+  }
+  const handleChange = (val) => {
+    editor.cmd.execCmd(val)
   }
   return (
     <div className="head" ref={headRef}>
       <Dropdown
-        options={constants.listOptions}
+        options={constants.alignOptions}
         width={200}
         customBtn={customBtn()}
-        value={initVal.listVal}
-        onChange={val => console.log(val)}
+        value={''}
+        onChange={handleChange}
       ></Dropdown>
     </div>
   )
@@ -39,4 +42,4 @@ const mapStateToProps = (state, ownProps) => {
     data: state
   }
 }
-export default withThemeContext(connect(mapStateToProps)(List))
+export default withThemeContext(connect(mapStateToProps)(Align))
