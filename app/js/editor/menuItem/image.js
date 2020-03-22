@@ -7,6 +7,9 @@ import { css } from '@emotion/core'
 import constants from '../constants'
 import Modal from '../../components/modal'
 import Input from '../../components/input'
+import RadioBoxGroup from '../../components/radioboxGroup'
+import ButtonGroup from '../../components/buttonGroup'
+import Button from '../../components/button'
 
 function Image(props) {
   const { data, theme } = props
@@ -22,6 +25,7 @@ function Image(props) {
   const [imageWidth, setImageWidth] = useState('')
   const [imageHeight, setImageHeight] = useState('')
   const [show, setShow] = useState(false)
+  const [tab, setTab] = useState('imageMessage')
   const imageRef = useRef()
 
   const imageClick = (e) => {
@@ -32,6 +36,9 @@ function Image(props) {
   }
   const handleCancel = () => {
     setShow(!show)
+  }
+  const handleTab = (e, option) => {
+    setTab(option)
   }
   
   return (
@@ -45,17 +52,40 @@ function Image(props) {
       <Modal
         isShow={show}
         title={'插入图片'}
-        width={800}
+        width={600}
         onOk={handleOk}
         onCancel={handleCancel}
         modalRoot={imageRef.current? imageRef.current: null}
       >
-        <Input placeholder='URL' value={imageUrl} className='image-input'
-          onChange={(e) => {setImageUrl(e.target.value)}}/>
-        <Input placeholder='宽度' value={imageWidth} className='image-input-wh'
-          onChange={(e) => {setImageWidth(e.target.value)}}/>
-        <Input placeholder='高度' value={imageHeight} className='image-input-wh'
-          onChange={(e) => {setImageHeight(e.target.value)}}/>
+        <ButtonGroup
+          onClick={handleTab}
+          options={constants.imageTabOptions}
+          value={tab}
+        >
+        </ButtonGroup>
+        {tab == 'imageMessage' &&
+          <Fragment >
+            <Input placeholder='URL' value={imageUrl} className='image-input'
+              onChange={(e) => {setImageUrl(e.target.value)}}/>
+            <Input placeholder='宽度' value={imageWidth}
+              onChange={(e) => {setImageWidth(e.target.value)}}/>
+            <Input placeholder='高度' value={imageHeight} 
+              onChange={(e) => {setImageHeight(e.target.value)}}/>
+            <RadioBoxGroup
+              className='image-radio'
+              onClick={(e, option) => {console.log(e, option)}}
+              options={constants.alignOptions}
+              value='default'
+            >
+            </RadioBoxGroup>
+          </Fragment>
+        }
+        {tab == 'imageUpload' &&
+          <Fragment >
+            <Input id='image' type='file'/>
+            <Button label='Upload'/>
+          </Fragment>
+        }
       </Modal> 
     </div>
   ) 

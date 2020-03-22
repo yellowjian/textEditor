@@ -31,7 +31,8 @@ export default class Editor {
         foreColor: false,
         backColor: false,
         link: false,
-        list: false
+        list: false,
+        table: false
       }
     }
     if(!selectionELem) {
@@ -44,6 +45,11 @@ export default class Editor {
     let cmdHeadValue = this.cmd.queryCommandValue('formatBlock')
     let cmdListValue = this.cmd.queryCommandState('insertUnOrderedList') ? 'unsorted-list' : 
       (this.cmd.queryCommandState('insertOrderedList') ? 'sorted-list': '')
+
+    let nodeName = selectionELem.nodeName
+    if (nodeName === 'TD' || nodeName === 'TH') {
+      curStatus.status.table = true
+    }
     if (headReg.test(cmdHeadValue)) {
       curStatus.status.list = true
       curStatus.vals.headVal = cmdHeadValue

@@ -14,6 +14,9 @@ import List from './menuItem/list'
 import Align from './menuItem/align'
 import Quote from './menuItem/quote'
 import Image from './menuItem/image'
+import Table from './menuItem/table'
+import Undo from './menuItem/undo'
+import Redo from './menuItem/redo'
 
 export default {
   menusItem: {
@@ -32,6 +35,9 @@ export default {
     justify: <Align></Align>,
     quote: <Quote></Quote>,
     image: <Image></Image>,
+    table: <Table></Table>,
+    undo: <Undo></Undo>,
+    redo: <Redo></Redo>,
   },
   headOptions: [
     { label: 'H1', value: '<h1>' },
@@ -73,9 +79,19 @@ export default {
     { label: '有序列表', value: 'sorted-list' },
     { label: '无序列表', value: 'unsorted-list' },
   ],
-  alignOptions: [
+  justifyOptions: [
     { label: '左对齐', value: 'justifyLeft' },
     { label: '居中', value: 'justifyCenter' },
     { label: '右对齐', value: 'justifyRight' },
+  ],
+  alignOptions: [
+    { label: '无', value: 'default' },
+    { label: '左对齐', value: 'alignleft' },
+    { label: '居中', value: 'alignCenter' },
+    { label: '右对齐', value: 'alignRight' },
+  ],
+  imageTabOptions: [
+    { label: '图像信息', value: 'imageMessage' },
+    { label: '图片上传', value: 'imageUpload' },
   ]
 }

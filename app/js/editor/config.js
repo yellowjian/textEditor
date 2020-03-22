@@ -16,7 +16,6 @@ export default {
     'quote',
     'image',
     'table',
-    'video',
     'undo',
     'redo'
   ],

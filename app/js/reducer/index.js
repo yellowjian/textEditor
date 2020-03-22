@@ -17,6 +17,7 @@ let initState = fromJS({
     backColor: false,
     link: false,
     list: false,
+    table: false
   },
   menuItemVal: {
     headVal: '',
