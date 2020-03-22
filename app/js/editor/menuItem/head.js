@@ -11,17 +11,21 @@ import constants from '../constants'
 function Head(props) {
   const { theme, data } = props
   const initVal = data.get('menuItemVal').toJS()
+  const initStatus = data.get('menuItemStatus').toJS()
   const editor = data.get('editor')
   const themeConfig = theme.config
   const menuIconTheme = css({
     color: getCSS(themeConfig.button.fontColor),
     '&:hover': {
       color: getCSS(themeConfig.button.active.fontColor)
+    },
+    '&.active': {
+      color: getCSS(themeConfig.button.visible.fontColor)
     }
   })
   const headRef = useRef()
   const customBtn = () => {
-    return <i className={`menu-icon-header`} css={menuIconTheme}></i>
+    return <i className={`menu-icon-header ` + (initStatus.head ? 'active': '')} css={menuIconTheme}></i>
   }
   const handleChange = (val) => {
     const selectionElem = editor.selection.getSelectionContainerElem()

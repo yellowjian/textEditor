@@ -45,18 +45,33 @@ export default class Editor {
     let cmdHeadValue = this.cmd.queryCommandValue('formatBlock')
     let cmdListValue = this.cmd.queryCommandState('insertUnOrderedList') ? 'unsorted-list' : 
       (this.cmd.queryCommandState('insertOrderedList') ? 'sorted-list': '')
-
     let nodeName = selectionELem.nodeName
+    let cmdBoldValue = this.cmd.queryCommandValue('bold')
+    let cmdItalicValue = this.cmd.queryCommandState('italic')
+    let cmdUnderlineValue = this.cmd.queryCommandState('underline')
+    let cmdStrikethroughValue = this.cmd.queryCommandState('strikethrough')
     if (nodeName === 'TD' || nodeName === 'TH') {
       curStatus.status.table = true
     }
     if (headReg.test(cmdHeadValue)) {
-      curStatus.status.list = true
-      curStatus.vals.headVal = cmdHeadValue
+      curStatus.status.head = true
+      curStatus.vals.headVal = `<${cmdHeadValue}>`
     }
     if (cmdListValue) {
-      curStatus.status.head = true
+      curStatus.status.list = true
       curStatus.vals.listVal = cmdListValue
+    }
+    if (cmdBoldValue == 'true') {
+      curStatus.status.bold = true
+    }
+    if (cmdItalicValue) {
+      curStatus.status.italic = true
+    }
+    if (cmdUnderlineValue) {
+      curStatus.status.underline = true
+    }
+    if (cmdStrikethroughValue) {
+      curStatus.status.strikeThrough = true
     }
     return curStatus
   }

@@ -9,8 +9,9 @@ import Dropdown from '../../components/dropdown/dropdown'
 import constants from '../constants'
 
 function FontSize(props) {
-  const { theme } = props
+  const { theme, data } = props
   const themeConfig = theme.config
+  const editor = data.get('editor')
   const menuIconTheme = css({
     color: getCSS(themeConfig.button.fontColor),
     '&:hover': {
@@ -21,14 +22,18 @@ function FontSize(props) {
   const customBtn = () => {
     return <i className={`menu-icon-text-heigh`} css={menuIconTheme}></i>
   }
+  const handleChange = (val) => {
+    editor.cmd.execCmd('fontSize', val)
+  }
+
   return (
     <div className="font" ref={fontRef}>
       <Dropdown
         options={constants.fontOptions}
         width={200}
         customBtn={customBtn()}
-        value="normal"
-        onChange={val => console.log(val)}
+        value=""
+        onChange={handleChange}
       ></Dropdown>
     </div>
   ) 

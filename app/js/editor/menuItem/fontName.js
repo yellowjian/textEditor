@@ -9,8 +9,9 @@ import Dropdown from '../../components/dropdown/dropdown'
 import constants from '../constants'
 
 function FontName(props) {
-  const { theme } = props
+  const { theme, data } = props
   const themeConfig = theme.config
+  const editor = data.get('editor')
   const menuIconTheme = css({
     color: getCSS(themeConfig.button.fontColor),
     '&:hover': {
@@ -21,14 +22,18 @@ function FontName(props) {
   const customBtn = () => {
     return <i className={`menu-icon-font`} css={menuIconTheme}></i>
   }
+  const handleChange = (val) => {
+    editor.cmd.execCmd('fontName', val)
+  }
+
   return (
     <div className="font-name" ref={fontRef}>
       <Dropdown
         options={constants.fontNameOptions}
         width={200}
         customBtn={customBtn()}
-        value="宋体"
-        onChange={val => console.log(val)}
+        value=""
+        onChange={handleChange}
       ></Dropdown>
     </div>
   ) 

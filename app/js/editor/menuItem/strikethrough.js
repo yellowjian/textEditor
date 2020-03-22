@@ -10,10 +10,14 @@ function Strikethrough(props) {
   const { data, theme, pureMenu = false } = props
   const themeConfig = theme.config
   const editor = data.get('editor')
+  const initStatus = data.get('menuItemStatus').toJS()
   const menuIconTheme = css({
     color: getCSS(themeConfig.button.fontColor),
     '&:hover': {
       color: getCSS(themeConfig.button.active.fontColor)
+    },
+    '&.active': {
+      color: getCSS(themeConfig.button.visible.fontColor)
     }
   })
   const strikeThroughClick = (e) => {
@@ -30,7 +34,7 @@ function Strikethrough(props) {
   return (
     <div className="strikethrough">
       <i
-        className={`menu-icon-strikethrough`}
+        className={`menu-icon-strikethrough ` + (initStatus.strikeThrough ? 'active': '')}
         css={menuIconTheme}
         onClick={strikeThroughClick}
       ></i>

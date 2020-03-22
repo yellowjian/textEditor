@@ -10,10 +10,14 @@ function Italic(props) {
   const { data, theme, pureMenu = false } = props
   const themeConfig = theme.config
   const editor = data.get('editor')
+  const initStatus = data.get('menuItemStatus').toJS()
   const menuIconTheme = css({
     color: getCSS(themeConfig.button.fontColor),
     '&:hover': {
       color: getCSS(themeConfig.button.active.fontColor)
+    },
+    '&.active': {
+      color: getCSS(themeConfig.button.visible.fontColor)
     }
   })
   const italicClick = (e) => {
@@ -30,7 +34,7 @@ function Italic(props) {
   return (
     <div className="italic">
       <i
-        className={`menu-icon-italic`}
+        className={`menu-icon-italic ` + (initStatus.italic ? 'active': '')}
         css={menuIconTheme}
         onClick={italicClick}
       ></i>

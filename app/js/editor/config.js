@@ -20,8 +20,6 @@ export default {
     'redo'
   ],
 
-  fontNames: ['宋体', '微软雅黑', 'Arial', 'Tahoma', 'Verdana'],
-
   // 编辑区域的 z-index
   zIndex: 10000,
 

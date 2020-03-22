@@ -6,6 +6,7 @@ const cssVar = {
   'gray-2': '#f0f2f5',
   'gray-1': '#e2e6e8',
   'white': '#ffffff',
+  'yellow': '#ffcc00',
   'blue-3': '#0366d6',
   'blue': '#0066b5',
   'bg-color-2': '#21262b',

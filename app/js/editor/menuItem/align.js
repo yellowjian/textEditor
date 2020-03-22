@@ -16,7 +16,7 @@ function Align(props) {
     color: getCSS(themeConfig.button.fontColor),
     '&:hover': {
       color: getCSS(themeConfig.button.active.fontColor)
-    }
+    },
   })
   const headRef = useRef()
   const customBtn = () => {

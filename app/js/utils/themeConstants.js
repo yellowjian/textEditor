@@ -32,6 +32,9 @@ const THEMECONFIG = {
       active: {
         fontColor: 'white',
         backgroundColor: 'gray-7'
+      },
+      visible: {
+        fontColor: 'yellow'
       }
     },
     modal: {
@@ -106,6 +109,9 @@ const THEMECONFIG = {
       active: {
         fontColor: 'gray-11',
         backgroundColor: 'gray-1'
+      },
+      visible: {
+        fontColor: 'yellow'
       }
     },
     input: {
