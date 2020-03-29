@@ -9,7 +9,7 @@ export default class Text {
     this.bindEvent()
   }
   clear() {
-    this.html('<p><br></p>')
+    this.html('<div><br></div>')
   }
   html(val) {
     let editor = this.editor
@@ -35,7 +35,7 @@ export default class Text {
     // 按回车时的特殊处理
     this.enterKeyHandle()
 
-    // 清空时保留 <p><br></p>
+    // 清空时保留 <div><br></div>
     this.clearHandle()
 
     // 粘贴事件（粘贴文字，粘贴图片）
@@ -78,10 +78,10 @@ export default class Text {
     const textElem = editor.textElem
     // insert p elemet
     function insertEmptyP(selectionElem) {
-      let p = document.createElement('p')
-      p.innerHTML = '<br>'
-      textElem.insertBefore(p, selectionElem)
-      editor.selection.createRangeByElem(p, true)
+      let div = document.createElement('div')
+      div.innerHTML = '<br>'
+      textElem.insertBefore(div, selectionElem)
+      editor.selection.createRangeByElem(div, true)
       editor.selection.restoreSelection()
       selectionElem.remove()
     }
@@ -98,18 +98,18 @@ export default class Text {
         return
       }
 
-      if (!parentElem.equal(textElem)) {
+      if (!parentElem == textElem) {
         // 不是顶级标签
         return
       }
 
       let nodeName = selectionElem.nodeName
-      if (nodeName === 'P') {
+      if (nodeName === 'div') {
         // 当前的标签是 P ，不用做处理
         return
       }
 
-      if (selectionElem.text()) {
+      if (selectionElem.innerText) {
         // 有内容，不做处理
         return
       }
@@ -151,10 +151,10 @@ export default class Text {
       if (editor._willBreakCode === true) {
         // 此时可以跳出代码块
         // 插入 <p> ，并将选取定位到 <p>
-        let p = document.createElement('p')
-        p.innerHTML = '<br>'
-        textElem.insertAfter(p, parentElem)
-        editor.selection.createRangeByElem(p, true)
+        let div = document.createElement('div')
+        div.innerHTML = '<br></br>'
+        textElem.insertAfter(div, parentElem)
+        editor.selection.createRangeByElem(div, true)
         editor.selection.restoreSelection()
 
         // 修改状态
@@ -205,7 +205,7 @@ export default class Text {
         return
       }
       let txtHtml = textElem.innerHTML.toLowerCase().trim()
-      if (txtHtml === '<p><br></p>') {
+      if (txtHtml === '<div><br></div>') {
         // 最后剩下一个空行，就不再删除了
         e.preventDefault()
         return
@@ -216,17 +216,17 @@ export default class Text {
       if (e.keyCode !== 8) {
         return
       }
-      let p = void 0
+      let div = void 0
       let txtHtml = textElem.innerHTML.toLowerCase().trim()
 
       // firefox 时用 txtHtml === '<br>' 判断，其他用 !txtHtml 判断
       if (!txtHtml || txtHtml === '<br>') {
         // 内容空了
-        p = document.createElement('p')
-        p.innerHTML = '<br>'
+        div = document.createElement('div')
+        div.innerHTML = '<br></br>'
         textElem.innerHTML = '' // 一定要先清空，否则在 firefox 下有问题
-        textElem.append(p)
-        editor.selection.createRangeByElem(p, false, true)
+        textElem.append(div)
+        editor.selection.createRangeByElem(div, false, true)
         editor.selection.restoreSelection()
       }
     })

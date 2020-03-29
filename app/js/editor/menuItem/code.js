@@ -3,7 +3,7 @@ import { render } from 'react-dom'
 import { connect } from 'react-redux'
 import withThemeContext from '../../hoc/withThemeContext'
 import { getCSS } from '../../utils/utils'
-import { escapeHtml } from '../util'
+import { escapeHtml, countLines, updateRowNum } from '../util'
 import { css } from '@emotion/core'
 import constants from '../constants'
 import Modal from '../../components/modal'
@@ -27,9 +27,11 @@ function Code(props) {
   const areaRef = useRef()
   const codeRef = useRef()
   const languageRef = useRef()
+  const numRef = useRef()
   const [show, setShow] = useState(false)
   const [isFirst, setIsFirst] = useState(false)
   const [code, setCode] = useState('')
+  const [rowNumber, setRowNumber] = useState('1')
   const [language, setLanguage] = useState('javascript')
   const codeClick = (e) => {
     setShow(!show)
@@ -42,6 +44,11 @@ function Code(props) {
   }
   const handleOk = () => {
     setShow(!show)
+    if (code == '') {
+      return 
+    }
+    console.log(numRef.current)
+    editor.cmd.execCmd('insertHTML', `<div class='code-part'>${numRef.current.el.outerHTML}<pre>${codeRef.current.outerHTML}</pre></div>`)
   }
   const handleCancel = () => {
     setShow(!show)
@@ -52,11 +59,17 @@ function Code(props) {
   }
   useEffect(() => {
     let codeArea = areaRef.current && areaRef.current.el
+    let codeShow = codeRef.current
     if(codeArea && !isFirst) {
       setIsFirst(true)
       const events = ['ready', 'load', 'keyup', 'keydown', 'change']
       events.forEach((item) => {
-        codeArea.addEventListener(item, function() {
+        codeArea.addEventListener(item, function(event) {
+          // handle tab key down 
+          if (event.type == 'keydown' && event.which == 9) {
+            event.preventDefault()
+            handleTab(codeArea)
+          }
           correctTextareaHight()
           hightlightSyntax()
         })
@@ -72,15 +85,16 @@ function Code(props) {
 
   HTMLElement.prototype.html = function(str){
     if(typeof str === 'string') {
-        this.innerHTML = str;
-        return this;
+        this.innerHTML = str
+        return this
     } else { 
-        return this.innerHTML;
+        return this.innerHTML
     }
   }
 
   function correctTextareaHight() {
     let codeArea = areaRef.current.el
+    let numEle = numRef.current.el
     let codeShow = codeRef.current
     let outerHeight = codeArea.offsetHeight 
     let innerHeight = codeArea.scrollHeight
@@ -89,16 +103,40 @@ function Code(props) {
     if (outerHeight < combinedScrollHeight){
       codeArea.style.height = combinedScrollHeight + 'px'
       codeShow.style.height = combinedScrollHeight + 'px'
+      numEle.style.height = (combinedScrollHeight - 12) + 'px'
     }
+    codeArea.style.width = codeShow.style.width
   }
 
-  function hightlightSyntax(){
+  function handleTab(ele) {
+    let s = ele.selectionStart
+    let e = ele.selectionEnd
+    ele.value = ele.value.substring(0, s) + '\t' + ele.value.substring(e)
+    ele.selectionEnd = s + 1
+  }
+  function hightlightSyntax() {
     let content  = areaRef.current.el.value
     let codeHolder = codeRef.current
     var escaped = escapeHtml(content)
     codeHolder.html(escaped)
     hljs.highlightBlock(codeHolder)
   }
+
+  const codeChanged = (val) => {
+    setCode(val)
+    const numEle = numRef.current.el
+		let cntline = countLines(val)
+		let tmpArr = numEle.value.split('\n');
+		let cntlineOld = parseInt(tmpArr[tmpArr.length - 1], 10)
+		// if there was a change in line count
+		if (cntline != cntlineOld) {
+      setRowNumber(updateRowNum(cntline))
+		}
+  }
+
+  function scrollChanged() {
+    codeRef.current.scrollLeft = areaRef.current.el.scrollLeft
+	}
 
   return (
     <div className="code" ref={linkRef}>
@@ -124,8 +162,13 @@ function Code(props) {
             onChange={val => setLanguage(val)}
           ></Dropdown>
         </div>
-        <TextArea className='text-area' ref={areaRef} value={code} onChange={(e) => {setCode(e.target.value)}}/>
-        <pre><code ref={codeRef} className={`syntax-highight scrollbar-y ${language}`}></code></pre>
+        <div className='code-edit-area'>
+          <TextArea className="row-number" ref={numRef} cols="3" value={rowNumber} readonly/>
+          <span>
+            <TextArea wrap='off' className='text-area scrollbar-y' ref={areaRef} value={code} onChange={(e) => {codeChanged(e.target.value)}} onScroll={scrollChanged}/>
+            <pre><code ref={codeRef} className={`syntax-highight scrollbar-y ${language}`}></code></pre>
+          </span>
+        </div>
       </Modal> 
     </div>
   ) 

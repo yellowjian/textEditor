@@ -7,6 +7,7 @@ import Actions from '../action'
 import withThemeContext from '../hoc/withThemeContext'
 import { getCSS } from '../utils/utils'
 import { css } from '@emotion/core'
+import TextArea from '../components/textarea'
 
 function TextEditor(props) {
   const { theme, updateEditorAction, updateMenuItemAction, updateMenuValueAction } = props
@@ -73,7 +74,7 @@ function TextEditor(props) {
           className="text-editor scrollbar-y"
           css={textEditorTheme}
           contentEditable={true}
-        ></div>
+        ><div><br></br></div></div>
       </div>
     </div>
   )

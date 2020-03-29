@@ -18,7 +18,7 @@ module.exports = {
     path: path.resolve(__dirname, dist)
   },
   cache: DEBUG,
-  devtool: DEBUG ? '#inline-source-map' : false,
+  devtool: DEBUG ? '#inline-source-map' : false,  //cheap-module-eval-source-map
 
   stats: {
     colors: true,

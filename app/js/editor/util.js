@@ -94,6 +94,23 @@ function escapeHtml(unsafe) {
     .replace(/</g, "&lt;")
     .replace(/>/g, "&gt;")
     .replace(/"/g, "&quot;")
-    .replace(/'/g, "&#039;");
+    .replace(/'/g, "&#039;")
+    .replace(/\t/g, "    ")
 }
-export { getRandom, isContain, getPasteHtml, getPasteText, addListenerMulti, isFunction, escapeHtml }
+
+function countLines(val) {
+  if (val == '') {
+		return 1
+	}
+	return val.split('\n').length
+}
+
+function updateRowNum(cntline) {
+  let tmpstr = ''
+  for (let i = 1; i <= cntline; i++) {
+    tmpstr = tmpstr + i.toString() + '\n'
+  }
+  return tmpstr
+}
+
+export { getRandom, isContain, getPasteHtml, getPasteText, addListenerMulti, isFunction, escapeHtml, countLines, updateRowNum }
