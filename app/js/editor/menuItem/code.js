@@ -47,8 +47,7 @@ function Code(props) {
     if (code == '') {
       return 
     }
-    console.log(numRef.current)
-    editor.cmd.execCmd('insertHTML', `<div class='code-part'>${numRef.current.el.outerHTML}<pre>${codeRef.current.outerHTML}</pre></div>`)
+    editor.cmd.execCmd('insertHTML', `<div class='code-part' contenteditable='false'>${numRef.current.el.outerHTML}<pre>${codeRef.current.outerHTML}</pre></div>`)
   }
   const handleCancel = () => {
     setShow(!show)
@@ -163,7 +162,7 @@ function Code(props) {
           ></Dropdown>
         </div>
         <div className='code-edit-area'>
-          <TextArea className="row-number" ref={numRef} cols="3" value={rowNumber} readonly/>
+          <TextArea className="row-number" ref={numRef} cols="3" value={rowNumber} readonly={true}/>
           <span>
             <TextArea wrap='off' className='text-area scrollbar-y' ref={areaRef} value={code} onChange={(e) => {codeChanged(e.target.value)}} onScroll={scrollChanged}/>
             <pre><code ref={codeRef} className={`syntax-highight scrollbar-y ${language}`}></code></pre>
