@@ -1,4 +1,4 @@
-export const UA = {
+export default {
   _ua: navigator.userAgent,
 
   // 是否 webkit

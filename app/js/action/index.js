@@ -13,8 +13,23 @@ const updateTheme = appTheme => ({
   type: Types.UPDATE_THEME,
   appTheme
 })
+const updateEditor = editor => ({
+  type: Types.UPDATE_EDITOR,
+  editor
+})
+const updateMenuItem = menuItemStatus => ({
+  type: Types.UPDATE_MENU_ITEM,
+  menuItemStatus
+})
+const updateMenuValue = menuItemVal => ({
+  type: Types.UPDATE_MENU_VAL,
+  menuItemVal
+})
 export default {
   initApplication,
   updateData,
-  updateTheme
+  updateTheme,
+  updateEditor,
+  updateMenuItem,
+  updateMenuValue
 }

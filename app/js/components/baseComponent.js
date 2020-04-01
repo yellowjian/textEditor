@@ -76,13 +76,12 @@ const BaseComponent = forwardRef((props, ref) => {
     if(iconPosition == 'right') content.reverse()
     return content
   }
-  const isInput = domType == 'input'
+  const isInput = (domType == 'input' || domType == 'textarea')
 
   const component = jsx(domType, basicProps, !isInput? renderContent() : null)
   return (
     <Fragment>
       {component}
-      {/* {isInput && renderContent()} */}
     </Fragment>
   )
 })

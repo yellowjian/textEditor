@@ -6,7 +6,7 @@ import { getCSS } from '../../utils/utils'
 import { css } from '@emotion/core'
 import constants from '../constants'
 
-function Bold(props) {
+function Italic(props) {
   const { data, theme, pureMenu = false } = props
   const themeConfig = theme.config
   const editor = data.get('editor')
@@ -20,24 +20,23 @@ function Bold(props) {
       color: getCSS(themeConfig.button.visible.fontColor)
     }
   })
-  const boldClick = (e) => {
+  const italicClick = (e) => {
     let isSeleEmpty = editor.selection.isSelectionEmpty()
     if(isSeleEmpty) {
       editor.selection.createEmptyRange()
     }
-    editor.cmd.execCmd('bold')
+    editor.cmd.execCmd('italic')
     if (isSeleEmpty) {
       editor.selection.collapseRange()
       editor.selection.restoreSelection()
     }
   }
   return (
-    <div className="bold">
+    <div className="italic">
       <i
-        className={`menu-icon-bold ` + (initStatus.bold ? 'active': '')}
+        className={`menu-icon-italic ` + (initStatus.italic ? 'active': '')}
         css={menuIconTheme}
-        onClick={boldClick}
-        title='字体粗细'
+        onClick={italicClick}
       ></i>
     </div>
   ) 
@@ -48,4 +47,4 @@ const mapStateToProps = (state, ownProps) => {
   }
 }
 
-export default connect(mapStateToProps)(withThemeContext(Bold))
+export default connect(mapStateToProps)(withThemeContext(Italic))

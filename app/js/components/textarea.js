@@ -4,7 +4,7 @@ import withThemeContext from '../hoc/withThemeContext'
 import { getCSS } from '../utils/utils'
 import BaseComponent from './baseComponent'
 
-const Input = forwardRef((props, ref) => {
+const TextArea = forwardRef((props, ref) => {
   const { className, theme, themeCss = {}, isSelected = false, disabled = false, extraProps = []} = props
   const themeConfig = theme.config
   
@@ -19,20 +19,20 @@ const Input = forwardRef((props, ref) => {
     ...themeCss
   }: themeCss
 
-  const inputClass = cx('input', className)
-  const inputExtraProps = ['onChange', 'value', 'placeholder', 'type'].concat(extraProps)
+  const textAreaClass = cx('input scrollbar-y', className)
+  const textAreaExtraProps = ['onChange', 'wrap', 'readonly', 'onScroll', 'value', 'placeholder', 'type', 'rows', 'cols'].concat(extraProps)
   return (
     <BaseComponent
       {...props}
-      className={inputClass}
-      domType={'input'}
+      className={textAreaClass}
+      domType={'textarea'}
       themeCss={themeStyle}
       ref={ref}
       isOperator={false}
-      extraProps={inputExtraProps}
+      extraProps={textAreaExtraProps}
     >
     </BaseComponent>
   )
 })
 
-export default withThemeContext(Input)
+export default withThemeContext(TextArea)

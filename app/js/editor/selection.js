@@ -1,4 +1,5 @@
 import { isContain } from './util'
+import UA from './ua'
 
 export default class Selection {
   constructor(editor) {
@@ -85,6 +86,36 @@ export default class Selection {
         }
     }
     return false
+  }
+
+  createEmptyRange() {
+    let editor = this.editor
+    let range = this.getRange()
+    let elem = void 0
+    if (!range) {
+      return
+    }
+    if (!this.isSelectionEmpty()) {
+      return
+    }
+    try {
+      // 目前只支持 webkit 内核
+      if (UA.isWebkit()) {
+          // 插入 &#8203
+          editor.cmd.execCmd('insertHTML', '&#8203;')
+          // 修改 offset 位置
+          range.setEnd(range.endContainer, range.endOffset + 1)
+          // 存储
+          this.saveRange(range)
+      } else {
+          elem = document.createElement('strong')
+          elem.innerText = '&#8203;'
+          editor.cmd.execCmd('insertElem', elem)
+          this.createRangeByElem(elem, true)
+      }
+    } catch (ex) {
+        // 部分情况下会报错，兼容一下
+    }
   }
 
   restoreSelection() {

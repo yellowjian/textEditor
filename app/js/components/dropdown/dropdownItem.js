@@ -33,11 +33,9 @@ const DropdownItem = forwardRef((props, ref) => {
       <BaseComponent {...props} className={itemClass} themeCss={themeStyle} ref={ref}/>
       :
       multiple ?
-        <CheckBox {...props} className={itemClass} themeCss={themeStyle}>
-        </CheckBox>
+        <CheckBox {...props} className={itemClass} themeCss={themeStyle}/>
         :
-        <RadioBox {...props} className={itemClass} themeCss={themeStyle}>
-        </RadioBox>
+        <RadioBox {...props} className={itemClass} themeCss={themeStyle}/>
   )
   return (
     <Fragment>

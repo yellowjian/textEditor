@@ -5,9 +5,10 @@ const cssVar = {
   'gray-7': '#414d60',
   'gray-2': '#f0f2f5',
   'gray-1': '#e2e6e8',
-  white: '#ffffff',
+  'white': '#ffffff',
+  'yellow': '#ffcc00',
   'blue-3': '#0366d6',
-  blue: '#0066b5',
+  'blue': '#0066b5',
   'bg-color-2': '#21262b',
   'bg-color-3': '#000000',
   'bg-color-4': 'rgba(26, 26, 26, 0.4)',
@@ -21,7 +22,7 @@ const cssVar = {
   'shadow-color-2': 'rgba(0, 0, 0, 0.7)',
   'shadow-color-3': 'rgba(236,236,236, 0.8)',
   'shadow-color-4': 'rgba(0, 0, 0, 0.2)',
-  'shadow-color-5': 'rgba(0, 0, 0, 0.3)'
+  'shadow-color-5': 'rgba(0, 0, 0, 0.3)',
 }
 
 export default cssVar

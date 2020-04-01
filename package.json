@@ -12,11 +12,13 @@
   "license": "ISC",
   "homepage": "https://github.com/yellowjian/components.git",
   "dependencies": {
-    "@emotion/core": "^10.0.17",
+    "@emotion/core": "^10.0.27",
     "classnames": "^2.2.6",
     "express": "^4.17.1",
+    "highlight.js": "^9.18.1",
     "immutable": "^4.0.0-rc.12",
     "react": "^16.11.0",
+    "react-color": "^2.18.0",
     "react-dom": "^16.11.0",
     "react-redux": "^7.1.3",
     "redux": "^4.0.5",
@@ -25,8 +27,8 @@
     "rxjs": "^6.5.4"
   },
   "devDependencies": {
-    "@babel/core": "^7.6.2",
-    "@babel/preset-env": "^7.6.2",
+    "@babel/core": "^7.8.7",
+    "@babel/preset-env": "^7.8.7",
     "@babel/preset-es2015": "^7.0.0-beta.53",
     "@babel/preset-react": "^7.0.0",
     "@babel/preset-stage-3": "^7.8.3",
@@ -40,8 +42,10 @@
     "minimist": "^1.2.0",
     "node-sass": "^4.13.0",
     "sass-loader": "^8.0.0",
+    "style-loader": "^1.1.3",
     "uglifyjs-webpack-plugin": "^2.2.0",
     "webpack": "^4.41.2",
-    "webpack-cli": "^3.3.10"
+    "webpack-cli": "^3.3.10",
+    "webpack-dev-server": "^3.10.3"
   }
 }

@@ -1,5 +1,5 @@
-import { UA } from './ua'
-import { getPasteHtml, getPasteText, addListenerMulti } from './util'
+import UA from './ua'
+import { getPasteHtml, getPasteText, addListenerMulti, isFunction } from './util'
 
 export default class Text {
   constructor(editor) {
@@ -9,7 +9,7 @@ export default class Text {
     this.bindEvent()
   }
   clear() {
-    this.html('<p><br></p>')
+    this.html('<div><br></div>')
   }
   html(val) {
     let editor = this.editor
@@ -24,17 +24,18 @@ export default class Text {
       textElem.innerHTML = val
 
       // 初始化选取，将光标定位到内容尾部
-      editor.initSelection()
+      editor.initSelection() 
+
     }
   }
   bindEvent() {
     // 实时保存选取
-    this.saveRangeRealTime()
+    // this.saveRangeRealTime()
 
-    // 按回车建时的特殊处理
+    // 按回车时的特殊处理
     this.enterKeyHandle()
 
-    // 清空时保留 <p><br></p>
+    // 清空时保留 <div><br></div>
     this.clearHandle()
 
     // 粘贴事件（粘贴文字，粘贴图片）
@@ -44,43 +45,43 @@ export default class Text {
     this.tabHandle()
 
     // img 点击
-    this.imgHandle()
+    // this.imgHandle()
 
     // 拖拽事件
     this.dragHandle()
   }
-  saveRangeRealTime() {
-    const editor = this.editor
-    const textElem = editor.textElem
+  // saveRangeRealTime() {
+  //   const editor = this.editor
+  //   const textElem = editor.textElem
 
-    // 保存当前的选区
-    function saveRange(e) {
-      // 随时保存选区
-      editor.selection.saveRange()
-      // 更新按钮 ative 状态
-      // editor.menus.changeActive()
-    }
-    // 按键后保存
-    textElem.addEventListener('keyup', saveRange)
-    textElem.addEventListener('mousedown', () => {
-      // mousedown 状态下，鼠标滑动到编辑区域外面，也需要保存选区
-      // textElem.addEventListener('mouseleave', saveRange)
-    })
-    textElem.addEventListener('mouseup', () => {
-      // saveRange()
-      // 在编辑器区域之内完成点击，取消鼠标滑动到编辑区外面的事件
-      // textElem.removeEventListener('mouseleave', saveRange)
-    })
-  }
+  //   // 保存当前的选区
+  //   function saveRange(e) {
+  //     // 随时保存选区
+  //     editor.selection.saveRange()
+  //     // 更新按钮 ative 状态
+  //     editor.changeMenuItemStatus()
+  //   }
+  //   // 按键后保存
+  //   textElem.addEventListener('keyup', saveRange)
+  //   textElem.addEventListener('mousedown', () => {
+  //     // mousedown 状态下，鼠标滑动到编辑区域外面，也需要保存选区
+  //     textElem.addEventListener('mouseleave', saveRange)
+  //   })
+  //   textElem.addEventListener('mouseup', () => {
+  //     saveRange()
+  //     // 在编辑器区域之内完成点击，取消鼠标滑动到编辑区外面的事件
+  //     textElem.removeEventListener('mouseleave', saveRange)
+  //   })
+  // }
   enterKeyHandle() {
     const editor = this.editor
     const textElem = editor.textElem
     // insert p elemet
     function insertEmptyP(selectionElem) {
-      let p = document.createElement('p')
-      p.innerHTML = '<br>'
-      textElem.insertBefore(p, selectionElem)
-      editor.selection.createRangeByElem(p, true)
+      let div = document.createElement('div')
+      div.innerHTML = '<br>'
+      textElem.insertBefore(div, selectionElem)
+      editor.selection.createRangeByElem(div, true)
       editor.selection.restoreSelection()
       selectionElem.remove()
     }
@@ -97,18 +98,18 @@ export default class Text {
         return
       }
 
-      if (!parentElem.equal(textElem)) {
+      if (!parentElem == textElem) {
         // 不是顶级标签
         return
       }
 
-      let nodeName = selectionElem.getNodeName()
-      if (nodeName === 'P') {
+      let nodeName = selectionElem.nodeName
+      if (nodeName === 'div') {
         // 当前的标签是 P ，不用做处理
         return
       }
 
-      if (selectionElem.text()) {
+      if (selectionElem.innerText) {
         // 有内容，不做处理
         return
       }
@@ -133,8 +134,8 @@ export default class Text {
         return
       }
       let parentElem = selectionElem.parent()
-      let selectionNodeName = selectionElem.getNodeName()
-      let parentNodeName = parentElem.getNodeName()
+      let selectionNodeName = selectionElem.nodeName
+      let parentNodeName = parentElem.nodeName
 
       if (selectionNodeName !== 'CODE' || parentNodeName !== 'PRE') {
         // 不符合要求 忽略
@@ -150,10 +151,10 @@ export default class Text {
       if (editor._willBreakCode === true) {
         // 此时可以跳出代码块
         // 插入 <p> ，并将选取定位到 <p>
-        let p = document.createElement('p')
-        p.innerHTML = '<br>'
-        textElem.insertAfter(p, parentElem)
-        editor.selection.createRangeByElem(p, true)
+        let div = document.createElement('div')
+        div.innerHTML = '<br></br>'
+        textElem.insertAfter(div, parentElem)
+        editor.selection.createRangeByElem(div, true)
         editor.selection.restoreSelection()
 
         // 修改状态
@@ -204,7 +205,7 @@ export default class Text {
         return
       }
       let txtHtml = textElem.innerHTML.toLowerCase().trim()
-      if (txtHtml === '<p><br></p>') {
+      if (txtHtml === '<div><br></div>') {
         // 最后剩下一个空行，就不再删除了
         e.preventDefault()
         return
@@ -215,17 +216,17 @@ export default class Text {
       if (e.keyCode !== 8) {
         return
       }
-      let p = void 0
+      let div = void 0
       let txtHtml = textElem.innerHTML.toLowerCase().trim()
 
       // firefox 时用 txtHtml === '<br>' 判断，其他用 !txtHtml 判断
       if (!txtHtml || txtHtml === '<br>') {
         // 内容空了
-        p = document.createElement('p')
-        p.innerHTML = '<br>'
-        textElem.html('') // 一定要先清空，否则在 firefox 下有问题
-        textElem.append(p)
-        editor.selection.createRangeByElem(p, false, true)
+        div = document.createElement('div')
+        div.innerHTML = '<br></br>'
+        textElem.innerHTML = '' // 一定要先清空，否则在 firefox 下有问题
+        textElem.append(div)
+        editor.selection.createRangeByElem(div, false, true)
         editor.selection.restoreSelection()
       }
     })
@@ -281,7 +282,7 @@ export default class Text {
       if (!selectionElem) {
         return
       }
-      let nodeName = selectionElem.getNodeName()
+      let nodeName = selectionElem.nodeName
 
       // code 中只能粘贴纯文本
       if (nodeName === 'CODE' || nodeName === 'PRE') {
@@ -345,7 +346,7 @@ export default class Text {
       if (!selectionElem) {
         return
       }
-      let nodeName = selectionElem.getNodeName()
+      let nodeName = selectionElem.nodeName
 
       // code 中粘贴忽略
       if (nodeName === 'CODE' || nodeName === 'PRE') {
@@ -376,8 +377,8 @@ export default class Text {
         return
       }
       let parentElem = selectionElem.parent()
-      let selectionNodeName = selectionElem.getNodeName()
-      let parentNodeName = parentElem.getNodeName()
+      let selectionNodeName = selectionElem.nodeName
+      let parentNodeName = parentElem.nodeName
 
       if (selectionNodeName === 'CODE' && parentNodeName === 'PRE') {
         // <pre><code> 里面

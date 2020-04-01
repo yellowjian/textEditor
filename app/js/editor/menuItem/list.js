@@ -8,41 +8,28 @@ import cx from 'classnames'
 import Dropdown from '../../components/dropdown/dropdown'
 import constants from '../constants'
 
-function Head(props) {
+function List(props) {
   const { theme, data } = props
   const initVal = data.get('menuItemVal').toJS()
-  const initStatus = data.get('menuItemStatus').toJS()
-  const editor = data.get('editor')
   const themeConfig = theme.config
   const menuIconTheme = css({
     color: getCSS(themeConfig.button.fontColor),
     '&:hover': {
       color: getCSS(themeConfig.button.active.fontColor)
-    },
-    '&.active': {
-      color: getCSS(themeConfig.button.visible.fontColor)
     }
   })
   const headRef = useRef()
   const customBtn = () => {
-    return <i className={`menu-icon-header ` + (initStatus.head ? 'active': '')} css={menuIconTheme}></i>
-  }
-  const handleChange = (val) => {
-    const selectionElem = editor.selection.getSelectionContainerElem()
-    // check multi rows selected
-    if (selectionElem == editor.textElem) {
-      return 
-    }
-    editor.cmd.execCmd('formatBlock', val)
+    return <i className={`menu-icon-list2`} css={menuIconTheme}></i>
   }
   return (
     <div className="head" ref={headRef}>
       <Dropdown
-        options={constants.headOptions}
+        options={constants.listOptions}
         width={200}
         customBtn={customBtn()}
-        value={initVal.headVal}
-        onChange={handleChange}
+        value={initVal.listVal}
+        onChange={val => console.log(val)}
       ></Dropdown>
     </div>
   )
@@ -52,4 +39,4 @@ const mapStateToProps = (state, ownProps) => {
     data: state
   }
 }
-export default withThemeContext(connect(mapStateToProps)(Head))
+export default withThemeContext(connect(mapStateToProps)(List))
