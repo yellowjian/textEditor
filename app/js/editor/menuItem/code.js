@@ -138,9 +138,9 @@ function Code(props) {
 	}
 
   return (
-    <div className="code" ref={linkRef}>
+    <div className='code' ref={linkRef}>
       <i
-        className={`menu-icon-terminal`}
+        className='menu-icon-terminal'
         css={menuIconTheme}
         onClick={codeClick}
         title='插入代码'
@@ -157,12 +157,12 @@ function Code(props) {
           <Dropdown
             options={constants.languageOptions}
             width={200}
-            value="javascript"
+            value='javascript'
             onChange={val => setLanguage(val)}
           ></Dropdown>
         </div>
         <div className='code-edit-area'>
-          <TextArea className="row-number" ref={numRef} cols="3" value={rowNumber} readonly={true}/>
+          <TextArea className='row-number' ref={numRef} cols='3' value={rowNumber} readOnly={true}/>
           <span>
             <TextArea wrap='off' className='text-area scrollbar-y' ref={areaRef} value={code} onChange={(e) => {codeChanged(e.target.value)}} onScroll={scrollChanged}/>
             <pre><code ref={codeRef} className={`syntax-highight scrollbar-y ${language}`}></code></pre>

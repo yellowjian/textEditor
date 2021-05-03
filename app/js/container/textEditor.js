@@ -74,7 +74,7 @@ function TextEditor(props) {
           className="text-editor scrollbar-y"
           css={textEditorTheme}
           contentEditable={true}
-        ><div><br></br></div></div>
+        ></div>
       </div>
     </div>
   )

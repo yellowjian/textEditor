@@ -27,6 +27,7 @@ function Image(props) {
   const [show, setShow] = useState(false)
   const [tab, setTab] = useState('imageMessage')
   const imageRef = useRef()
+  const imageUploadRef = useRef()
 
   const imageClick = (e) => {
     setShow(!show)
@@ -40,7 +41,9 @@ function Image(props) {
   const handleTab = (e, option) => {
     setTab(option)
   }
-  
+  const handleUpload = () => {
+    imageUploadRef.current.el.click()
+  }
   return (
     <div className='image' ref={imageRef}>
       <i
@@ -82,8 +85,8 @@ function Image(props) {
         }
         {tab == 'imageUpload' &&
           <Fragment >
-            <Input id='image' type='file'/>
-            <Button label='Upload'/>
+            <Input id='image' type='file' className='file-upload' ref={imageUploadRef}/>
+            <Button label='Upload' icon='shangchuan' className='upload-btn' onClick={handleUpload}/>
           </Fragment>
         }
       </Modal> 

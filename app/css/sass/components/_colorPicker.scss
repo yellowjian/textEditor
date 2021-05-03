@@ -1,0 +1,195 @@
+.color-picker {
+  background: #ffffff;
+  border-radius: 2px;
+  box-shadow: 0 0 2px rgba(0, 0, 0, .3), 0 4px 8px rgba(0, 0, 0, .3);
+  box-sizing: initial;
+  width: 225px;
+
+  .saturation {
+    width: 100%;
+    padding-bottom: 55%;
+    position: relative;
+    border-radius: 2px 2px 0 0;
+    overflow: hidden;
+
+    .saturation-content {
+      position: absolute;
+      top: 0px;
+      right: 0px;
+      bottom: 0px;
+      left: 0px;
+      background: rgb(0, 70, 255);
+
+      .white {
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        right: 0px;
+        bottom: 0px;
+        background: linear-gradient(to right, #fff, rgba(255, 255, 255, 0));
+      }
+
+      .black {
+        position: absolute;
+        top: 0px;
+        right: 0px;
+        bottom: 0px;
+        left: 0px;
+        background: linear-gradient(to top, #000, rgba(0, 0, 0, 0));
+      }
+
+      .pointer {
+        position: absolute;
+        cursor: default;
+      }
+
+      .circle {
+        width: 12px;
+        height: 12px;
+        border-radius: 6px;
+        box-shadow: rgb(255, 255, 255) 0px 0px 0px 1px inset;
+        transform: translate(-6px, -6px);
+      }
+    }
+  }
+
+  .picker-body {
+    padding: 1em 1em 0.75em;
+
+    .flexbox-fix {
+      display: flex;
+
+      .color {
+        width: 2em;
+
+        .swatch {
+          margin-top: 6px;
+          width: 16px;
+          height: 16px;
+          border-radius: 8px;
+          position: relative;
+          overflow: hidden;
+
+          .active {
+            position: absolute;
+            top: 0px;
+            right: 0px;
+            bottom: 0px;
+            left: 0px;
+            border-radius: 8px;
+            box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 0px 1px inset;
+            z-index: 2;
+          }
+
+          .checkboard {
+            position: absolute;
+            top: 0px;
+            right: 0px;
+            bottom: 0px;
+            left: 0px;
+          }
+        }
+      }
+
+      .slider {
+        flex: 1 1 0%;
+
+        .hue {
+          height: 10px;
+          position: relative;
+          margin-bottom: 8px;
+
+          .hue-content {
+            position: absolute;
+            top: 0px;
+            right: 0px;
+            bottom: 0px;
+            left: 0px;
+            background: linear-gradient(to right, rgb(255, 0, 0) 0%, rgb(255, 255, 0) 17%, rgb(0, 255, 0) 33%, rgb(0, 255, 255) 50%, rgb(0, 0, 255) 67%, rgb(255, 0, 255) 83%, rgb(255, 0, 0) 100%);
+
+            .hue-horizontal {
+              margin: 0px 2px;
+              position: relative;
+              height: 100%;
+              background: linear-gradient(to right, #f00 0%, #ff0 17%, #0f0 33%, #0ff 50%, #00f 67%, #f0f 83%, #f00 100%);
+            }
+
+            .hue-vertical {
+              background: linear-gradient(to top, #f00 0%, #ff0 17%, #0f0 33%,
+                  #0ff 50%, #00f 67%, #f0f 83%, #f00 100%);
+            }
+
+            .pointer {
+              position: absolute;
+              cursor: default;
+            }
+
+            .circle {
+              width: 12px;
+              height: 12px;
+              border-radius: 6px;
+              box-shadow: rgb(255, 255, 255) 0px 0px 0px 1px inset;
+              transform: translate(-6px, -1px);
+              background-color: rgb(248, 248, 248);
+            }
+          }
+        }
+
+        .alpha {
+          height: 10px;
+          position: relative;
+
+          .alpha-content {
+            position: absolute;
+            top: 0px;
+            right: 0px;
+            bottom: 0px;
+            left: 0px;
+
+            .checkboard {
+              position: absolute;
+              top: 0px;
+              right: 0px;
+              bottom: 0px;
+              left: 0px;
+            }
+
+            .gradient {
+              position: absolute;
+              top: 0px;
+              right: 0px;
+              bottom: 0px;
+              left: 0px;
+
+              .gradient-content {
+                position: relative;
+                height: 100%;
+                margin: 0px 3px;
+
+                .pointer {
+                  position: absolute;
+                  cursor: default;
+                }
+
+                .circle {
+                  width: 12px;
+                  height: 12px;
+                  border-radius: 6px;
+                  box-shadow: rgb(255, 255, 255) 0px 0px 0px 1px inset;
+                  transform: translate(-6px, -1px);
+                  background-color: rgb(248, 248, 248);
+                }
+              }
+            }
+          }
+        }
+      }
+
+      .flexbox-fix {
+        padding-top: 16px;
+        display: flex;
+
+      }
+    }
+  }
+}

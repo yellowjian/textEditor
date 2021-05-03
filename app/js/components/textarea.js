@@ -20,7 +20,7 @@ const TextArea = forwardRef((props, ref) => {
   }: themeCss
 
   const textAreaClass = cx('input scrollbar-y', className)
-  const textAreaExtraProps = ['onChange', 'wrap', 'readonly', 'onScroll', 'value', 'placeholder', 'type', 'rows', 'cols'].concat(extraProps)
+  const textAreaExtraProps = ['onChange', 'wrap', 'readOnly', 'onScroll', 'value', 'placeholder', 'type', 'rows', 'cols'].concat(extraProps)
   return (
     <BaseComponent
       {...props}
