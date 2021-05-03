@@ -73,8 +73,8 @@ const Modal = forwardRef((props, ref) => {
   }))
   const getHeader = () => {
     return(
-      <div className="modal-header" css={modalHeader}>
-        <div className="modal-title">
+      <div className='modal-header' css={modalHeader}>
+        <div className='modal-title'>
           {title}
         </div>
       </div>
@@ -82,7 +82,7 @@ const Modal = forwardRef((props, ref) => {
   }
   const getFooter = () => {
     return(
-      <div className="modal-footer" css={modalFooter}>
+      <div className='modal-footer' css={modalFooter}>
         <div>
           <Button
             label={'取 消'}
@@ -99,7 +99,7 @@ const Modal = forwardRef((props, ref) => {
   if(onCancel && onOk) {
     let header = getHeader()
     let footer = getFooter()
-    childComponent = <div className='modal-content' css={modalContent}>{header}<div className='modal-body scrollbar-y'>{children}</div>{footer}</div>
+    childComponent = <div className='modal-content' key='model-content' css={modalContent}>{header}<div className='modal-body scrollbar-y'>{children}</div>{footer}</div>
   }
   return modalRoot
     ? createPortal(

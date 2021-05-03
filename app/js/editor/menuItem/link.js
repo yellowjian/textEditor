@@ -65,7 +65,7 @@ function Link(props) {
         onOk={handleOk}
         onCancel={handleCancel}
         modalRoot={linkRef.current? linkRef.current: null}
-      >
+      > 
         <Input placeholder='链接文字' value={linkName} className='link-input'
           onChange={(e) => {setLinkName(e.target.value)}}/>
         <Input placeholder='https://...' value={linkUrl} className='link-input'

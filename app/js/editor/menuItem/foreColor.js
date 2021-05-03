@@ -7,6 +7,7 @@ import { getCSS } from '../../utils/utils'
 import { css } from '@emotion/core'
 import constants from '../constants'
 import { SketchPicker } from 'react-color'
+import ColorPicker from '../../components/color/colorPicker'
 
 function ForeColor(props) {
   const { data, theme, } = props
@@ -19,8 +20,7 @@ function ForeColor(props) {
     }
   })
   const [display, setDisplay] = useState(false)
-  const [color, setColor] = useState('#ffffff')
-  const handleChange = ({ hex }) => console.log(hex)
+  const [color, setColor] = useState('#000000')
   const handleClick = () => {
     setDisplay(!display)
   }
@@ -28,15 +28,15 @@ function ForeColor(props) {
     setDisplay(false)
   }
   return (
-    <div className="pencil2">
+    <div className='pencil2'>
       <i
-        className={`menu-icon-pencil2`}
+        className='menu-icon-pencil2'
         css={menuIconTheme}
         onClick={ handleClick }
       ></i>
       { display ? <div className='popover'>
           <div className='cover' onClick={ handleClose }/>
-          <SketchPicker color={ color } onChange={ handleChange } />
+          <ColorPicker/>
         </div> : null }
     </div>
   ) 

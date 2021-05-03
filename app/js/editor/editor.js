@@ -38,14 +38,14 @@ export default class Editor {
     if(!selectionELem) {
       return
     }
-    if(selectionELem.nodeName == 'A') {
+    let nodeName = selectionELem.nodeName
+    if(nodeName == 'A') {
       curStatus.status.link = true
     }
     let headReg = /^h/i
     let cmdHeadValue = this.cmd.queryCommandValue('formatBlock')
     let cmdListValue = this.cmd.queryCommandState('insertUnOrderedList') ? 'unsorted-list' : 
       (this.cmd.queryCommandState('insertOrderedList') ? 'sorted-list': '')
-    let nodeName = selectionELem.nodeName
     let cmdBoldValue = this.cmd.queryCommandValue('bold')
     let cmdItalicValue = this.cmd.queryCommandState('italic')
     let cmdUnderlineValue = this.cmd.queryCommandState('underline')
