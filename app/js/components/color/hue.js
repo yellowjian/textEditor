@@ -1,7 +1,7 @@
-import { forwardRef, useEffect, useRef, } from 'react'
+import { forwardRef, useEffect, useRef } from 'react'
 import { calculateSlider } from './utils'
 
-const Hue = forwardRef((props, ref) => {
+const Hue = forwardRef(props => {
   const { hsl, onChange, direction = 'horizontal'} = props
   const sliderRef = useRef()
 

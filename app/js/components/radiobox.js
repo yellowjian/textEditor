@@ -13,29 +13,29 @@ const RadioBox = forwardRef((props, ref) => {
 
   const themeStyle = themeConfig
     ? {
-        ':not(.disabled):hover': {
-          ':before': {
-            boxShadow: `1px 1px 0 ${getCSS(
-              themeConfig.checkbox.hover.shadowColor
-            )}, inset 0 0 3px ${getCSS(themeConfig.checkbox.hover.insetColor)}`
-          }
-        },
+      ':not(.disabled):hover': {
         ':before': {
-          backgroundColor: getCSS(themeConfig.checkbox.backgroundColor),
-          borderColor: getCSS(themeConfig.checkbox.borderColor),
           boxShadow: `1px 1px 0 ${getCSS(
-            themeConfig.checkbox.shadowColor
-          )}, inset 1px 1px 1px ${getCSS(themeConfig.checkbox.insetColor)}`
-        },
-        '&.selected': {
-          color: getCSS(themeConfig.linkColor),
-          ':after': {
-            background: getCSS(themeConfig.checkbox.checked.backgroundColor),
-            color: getCSS(themeConfig.checkbox.checked.color)
-          }
-        },
-        ...themeCss
-      }
+            themeConfig.checkbox.hover.shadowColor
+          )}, inset 0 0 3px ${getCSS(themeConfig.checkbox.hover.insetColor)}`
+        }
+      },
+      ':before': {
+        backgroundColor: getCSS(themeConfig.checkbox.backgroundColor),
+        borderColor: getCSS(themeConfig.checkbox.borderColor),
+        boxShadow: `1px 1px 0 ${getCSS(
+          themeConfig.checkbox.shadowColor
+        )}, inset 1px 1px 1px ${getCSS(themeConfig.checkbox.insetColor)}`
+      },
+      '&.selected': {
+        'color': getCSS(themeConfig.linkColor),
+        ':after': {
+          background: getCSS(themeConfig.checkbox.checked.backgroundColor),
+          color: getCSS(themeConfig.checkbox.checked.color)
+        }
+      },
+      ...themeCss
+    }
     : themeCss
   return (
     <BaseComponent

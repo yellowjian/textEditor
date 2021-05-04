@@ -1,13 +1,11 @@
-import React, { useState, createRef, Fragment, useEffect, useRef } from 'react'
-import { render } from 'react-dom'
+import { useEffect, useRef } from 'react'
 import { connect } from 'react-redux'
 import Editor from '../editor/editor'
-import Menus from '../editor/menus'
 import Actions from '../action'
 import withThemeContext from '../hoc/withThemeContext'
 import { getCSS } from '../utils/utils'
 import { css } from '@emotion/core'
-import TextArea from '../components/textarea'
+import Menus from '../editor/menus'
 
 function TextEditor(props) {
   const { theme, updateEditorAction, updateMenuItemAction, updateMenuValueAction } = props
@@ -24,7 +22,7 @@ function TextEditor(props) {
     )
     editor.create()
     updateEditorAction(editor)
-    function saveRange(e) {
+    function saveRange() {
       // 随时保存选区
       editor.selection.saveRange()
       // 更新按钮 ative 状态
@@ -47,14 +45,14 @@ function TextEditor(props) {
   }, [])
 
   const textEditorTheme = css({
-    backgroundColor: getCSS(themeConfig.input.backgroundColor),
-    color: getCSS(themeConfig.input.color),
-    borderColor: `${getCSS(themeConfig.input.borderColorTop)} ${getCSS(
+    'backgroundColor': getCSS(themeConfig.input.backgroundColor),
+    'color': getCSS(themeConfig.input.color),
+    'borderColor': `${getCSS(themeConfig.input.borderColorTop)} ${getCSS(
       themeConfig.input.borderColorRight
     )} 
       ${getCSS(themeConfig.input.borderColorBottom)} ${getCSS(
-      themeConfig.input.borderColorLeft
-    )}`,
+  themeConfig.input.borderColorLeft
+)}`,
     '&:not(.disabled):focus': {
       borderColor: getCSS(themeConfig.input.active.borderColor)
     },
@@ -79,10 +77,8 @@ function TextEditor(props) {
     </div>
   )
 }
-const mapStateToProps = (state, ownProps) => {
-  return {
-    data: state
-  }
+const mapStateToProps = () => {
+  return {}
 }
 
 const mapDispatchToProps = {

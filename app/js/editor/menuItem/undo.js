@@ -7,9 +7,8 @@ import { css } from '@emotion/core'
 import constants from '../constants'
 
 function Undo(props) {
-  const { data, theme } = props
+  const { editor, theme } = props
   const themeConfig = theme.config
-  const editor = data.get('editor')
   const menuIconTheme = css({
     color: getCSS(themeConfig.button.fontColor),
     '&:hover': {
@@ -32,7 +31,7 @@ function Undo(props) {
 }
 const mapStateToProps = (state, ownProps) => {
   return {
-    data: state
+    editor: state.editor,
   }
 }
 

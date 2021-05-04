@@ -24,7 +24,7 @@ export default class Text {
       textElem.innerHTML = val
 
       // 初始化选取，将光标定位到内容尾部
-      editor.initSelection() 
+      editor.initSelection()
 
     }
   }
@@ -118,7 +118,7 @@ export default class Text {
       insertEmptyP(selectionElem)
     }
 
-    textElem.addEventListener('keyup', function(e) {
+    textElem.addEventListener('keyup', function (e) {
       if (e.keyCode !== 13) {
         // 不是回车键
         return
@@ -185,7 +185,7 @@ export default class Text {
       e.preventDefault()
     }
 
-    textElem.addEventListener('keydown', function(e) {
+    textElem.addEventListener('keydown', function (e) {
       if (e.keyCode !== 13) {
         // 不是回车键
         // 取消即将跳转代码块的记录
@@ -200,7 +200,7 @@ export default class Text {
     let editor = this.editor
     let textElem = editor.textElem
 
-    textElem.addEventListener('keydown', function(e) {
+    textElem.addEventListener('keydown', function (e) {
       if (e.keyCode !== 8) {
         return
       }
@@ -212,7 +212,7 @@ export default class Text {
       }
     })
 
-    textElem.addEventListener('keyup', function(e) {
+    textElem.addEventListener('keyup', function (e) {
       if (e.keyCode !== 8) {
         return
       }
@@ -260,7 +260,7 @@ export default class Text {
     }
 
     // 粘贴文字
-    textElem.addEventListener('paste', function(e) {
+    textElem.addEventListener('paste', function (e) {
       if (UA.isIE()) {
         return
       } else {
@@ -323,7 +323,7 @@ export default class Text {
       }
     })
     // 粘贴图片
-    textElem.addEventListener('paste', function(e) {
+    textElem.addEventListener('paste', function (e) {
       if (UA.isIE()) {
         return
       } else {
@@ -364,7 +364,7 @@ export default class Text {
     let editor = this.editor
     let textElem = editor.textElem
 
-    textElem.addEventListener('keydown', function(e) {
+    textElem.addEventListener('keydown', function (e) {
       if (e.keyCode !== 9) {
         return
       }
@@ -397,7 +397,7 @@ export default class Text {
     let textElem = editor.textElem
 
     // 为图片增加 selected 样式
-    textElem.addEventListener('click', function(e) {
+    textElem.addEventListener('click', function (e) {
       let img = this
 
       if (img.getAttribute('data-w-e') === '1') {
@@ -428,7 +428,7 @@ export default class Text {
     let editor = this.editor
 
     // 禁用 document 拖拽事件
-    addListenerMulti(document, 'dragleave drop dragenter dragover', function(
+    addListenerMulti(document, 'dragleave drop dragenter dragover', function (
       e
     ) {
       e.preventDefault()
@@ -436,7 +436,7 @@ export default class Text {
 
     // 添加编辑区域拖拽事件
     let textElem = editor.textElem
-    textElem.addEventListener('drop', function(e) {
+    textElem.addEventListener('drop', function (e) {
       e.preventDefault()
       let files = e.dataTransfer && e.dataTransfer.files
       if (!files || !files.length) {

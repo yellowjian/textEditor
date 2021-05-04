@@ -10,9 +10,8 @@ import { SketchPicker } from 'react-color'
 import ColorPicker from '../../components/color/colorPicker'
 
 function ForeColor(props) {
-  const { data, theme, } = props
+  const { editor, theme } = props
   const themeConfig = theme.config
-  const editor = data.get('editor')
   const menuIconTheme = css({
     color: getCSS(themeConfig.button.fontColor),
     '&:hover': {
@@ -43,7 +42,7 @@ function ForeColor(props) {
 }
 const mapStateToProps = (state, ownProps) => {
   return {
-    data: state
+    editor: state.editor,
   }
 }
 

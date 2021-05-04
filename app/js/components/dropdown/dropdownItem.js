@@ -1,4 +1,3 @@
-import React from 'react'
 import { forwardRef, Fragment } from 'react'
 import cx from 'classnames'
 import BaseComponent from '../baseComponent'
@@ -14,19 +13,18 @@ const DropdownItem = forwardRef((props, ref) => {
     pureMenu = false,
     theme,
     themeCss = {},
-    label
   } = props
   const itemClass = cx('dropdown-item', className)
   const themeConfig = theme.config
-  const themeStyle = themeConfig ?{
-    backgroundColor: getCSS(themeConfig.button.backgroundColor),
-    borderColor: `${getCSS(themeConfig.button.borderColorTop)} ${getCSS(themeConfig.button.borderColorRight)} 
+  const themeStyle = themeConfig ? {
+    'backgroundColor': getCSS(themeConfig.button.backgroundColor),
+    'borderColor': `${getCSS(themeConfig.button.borderColorTop)} ${getCSS(themeConfig.button.borderColorRight)} 
       ${getCSS(themeConfig.button.borderColorBottom)} ${getCSS(themeConfig.button.borderColorLeft)}`,
     ':hover': {
       backgroundColor: getCSS(themeConfig.dropdown.hover.backgroundColor)
     },
     ...themeCss
-  }: themeCss
+  } : themeCss
 
   const component = (
     pureMenu ?

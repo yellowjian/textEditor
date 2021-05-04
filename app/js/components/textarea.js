@@ -5,19 +5,19 @@ import { getCSS } from '../utils/utils'
 import BaseComponent from './baseComponent'
 
 const TextArea = forwardRef((props, ref) => {
-  const { className, theme, themeCss = {}, isSelected = false, disabled = false, extraProps = []} = props
+  const { className, theme, themeCss = {}, extraProps = []} = props
   const themeConfig = theme.config
   
-  const themeStyle = themeConfig? {
-    color: getCSS(themeConfig.input.color),
-    backgroundColor: getCSS(themeConfig.input.backgroundColor),
-    borderColor: `${getCSS(themeConfig.input.borderColorTop)} ${getCSS(themeConfig.input.borderColorRight)} 
+  const themeStyle = themeConfig ? {
+    'color': getCSS(themeConfig.input.color),
+    'backgroundColor': getCSS(themeConfig.input.backgroundColor),
+    'borderColor': `${getCSS(themeConfig.input.borderColorTop)} ${getCSS(themeConfig.input.borderColorRight)} 
       ${getCSS(themeConfig.input.borderColorBottom)} ${getCSS(themeConfig.input.borderColorLeft)}`,
     '&:not(.disabled):focus': {
       borderColor: getCSS(themeConfig.input.active.borderColor)
     },
     ...themeCss
-  }: themeCss
+  } : themeCss
 
   const textAreaClass = cx('input scrollbar-y', className)
   const textAreaExtraProps = ['onChange', 'wrap', 'readOnly', 'onScroll', 'value', 'placeholder', 'type', 'rows', 'cols'].concat(extraProps)

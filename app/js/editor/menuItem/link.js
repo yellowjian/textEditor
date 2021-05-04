@@ -9,9 +9,8 @@ import Modal from '../../components/modal'
 import Input from '../../components/input'
 
 function Link(props) {
-  const { data, theme, pureMenu = false } = props
+  const { editor, theme, pureMenu = false } = props
   const themeConfig = theme.config
-  const editor = data.get('editor')
   const menuIconTheme = css({
     color: getCSS(themeConfig.button.fontColor),
     '&:hover': {
@@ -76,7 +75,7 @@ function Link(props) {
 }
 const mapStateToProps = (state, ownProps) => {
   return {
-    data: state
+    editor: state.editor,
   }
 }
 

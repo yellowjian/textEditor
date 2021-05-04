@@ -42,24 +42,24 @@ export default class Selection {
 
     // get current selection
     let selection = window.getSelection()
-    if(selection.rangeCount == 0) {
+    if (selection.rangeCount == 0) {
       return
     }
     const range = selection.getRangeAt(0)
 
     let containerElem = this.getSelectionContainerElem(range)
     if (!containerElem) {
-        return
+      return
     }
 
     if (containerElem.getAttribute('contenteditable') == 'false') {
-        return
+      return
     }
 
     let editor = this.editor
     let textElem = editor.textElem
     if (isContain(textElem, containerElem)) {
-        this.curRange = range
+      this.curRange = range
     }
   }
   collapseRange(toStart = false) {
@@ -79,11 +79,11 @@ export default class Selection {
   isSelectionEmpty() {
     const range = this.curRange
     if (range && range.startContainer) {
-        if (range.startContainer === range.endContainer) {
-            if (range.startOffset === range.endOffset) {
-                return true
-            }
+      if (range.startContainer === range.endContainer) {
+        if (range.startOffset === range.endOffset) {
+          return true
         }
+      }
     }
     return false
   }
@@ -101,20 +101,20 @@ export default class Selection {
     try {
       // 目前只支持 webkit 内核
       if (UA.isWebkit()) {
-          // 插入 &#8203
-          editor.cmd.execCmd('insertHTML', '&#8203;')
-          // 修改 offset 位置
-          range.setEnd(range.endContainer, range.endOffset + 1)
-          // 存储
-          this.saveRange(range)
+        // 插入 &#8203
+        editor.cmd.execCmd('insertHTML', '&#8203;')
+        // 修改 offset 位置
+        range.setEnd(range.endContainer, range.endOffset + 1)
+        // 存储
+        this.saveRange(range)
       } else {
-          elem = document.createElement('strong')
-          elem.innerText = '&#8203;'
-          editor.cmd.execCmd('insertElem', elem)
-          this.createRangeByElem(elem, true)
+        elem = document.createElement('strong')
+        elem.innerText = '&#8203;'
+        editor.cmd.execCmd('insertElem', elem)
+        this.createRangeByElem(elem, true)
       }
     } catch (ex) {
-        // 部分情况下会报错，兼容一下
+      // 部分情况下会报错，兼容一下
     }
   }
 

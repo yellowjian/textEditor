@@ -1,9 +1,6 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import { render } from 'react-dom'
-import { connect, Provider } from 'react-redux'
-import Actions from './action'
-import ThemeContext from './hooks/themeContext'
-import THEMECONFIG from './utils/themeConstants'
+import { Provider } from 'react-redux'
 import configureStore from './stores/configureStore'
 import IndexView from './container/indexView'
 require('./font/iconfont')

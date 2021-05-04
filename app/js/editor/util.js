@@ -60,7 +60,7 @@ function getPasteHtml(e, filterStyle, ignoreImg) {
 
 function replaceHtmlSymbol(html) {
   if (html == null) {
-      return ''
+    return ''
   }
   return html.replace(/</gm, '&lt;').replace(/>/gm, '&gt;').replace(/"/gm, '&quot;').replace(/(\r\n|\r|\n)/g, '<br/>')
 }
@@ -90,19 +90,19 @@ function isFunction(fn) {
 
 function escapeHtml(unsafe) {
   return unsafe
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;")
-    .replace(/"/g, "&quot;")
-    .replace(/'/g, "&#039;")
-    .replace(/\t/g, "    ")
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#039;')
+    .replace(/\t/g, '    ')
 }
 
 function countLines(val) {
   if (val == '') {
-		return 1
-	}
-	return val.split('\n').length
+    return 1
+  }
+  return val.split('\n').length
 }
 
 function updateRowNum(cntline) {

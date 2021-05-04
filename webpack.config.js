@@ -4,7 +4,6 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin")
 const HtmlWebpackPlugin = require("html-webpack-plugin")
 const webpack = require('webpack')
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
-const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
 const argv = require('minimist')(process.argv.slice(2))
 const DEBUG = !argv.release
 const dist = "acpublic"
@@ -27,7 +26,7 @@ module.exports = {
   },
 
   devServer: {
-    port: 9000,
+    port: 3000,
     host: 'localhost',
     overlay: {
       errors: true

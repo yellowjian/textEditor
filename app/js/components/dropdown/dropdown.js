@@ -1,21 +1,17 @@
-import React, { forwardRef, Fragment, useState, useEffect, useRef } from 'react'
+import { forwardRef, Fragment, useState, useEffect, useRef } from 'react'
 import cx from 'classnames'
 import Button from '../button'
-import Icon from '../icon'
 import DropdownItem from './dropdownItem'
 import Modal from '../modal'
-import { getCSS } from '../../utils/utils'
-
 let uniqueCode = 0
 
-const Dropdown = forwardRef((props, ref) => {
+const Dropdown = forwardRef(props => {
   const {
     className,
     width = 200,
     options = [],
     multiple = false,
     value,
-    themeCss = {},
     pureMenu = false,
     customBtn = null,
     onChange,
@@ -76,7 +72,7 @@ const Dropdown = forwardRef((props, ref) => {
         if (selectedVals.length == filterOptions.length) {
           setSelectedVals(vals)
         } else {
-          vals = filterOptions.map(item => item.value)
+          vals = filterOptions.map(option => option.value)
           setSelectedVals(vals)
         }
       } else {
@@ -92,7 +88,7 @@ const Dropdown = forwardRef((props, ref) => {
       onChange && onChange(vals)
     }
   }
-  const onButtonClick = e => {
+  const onButtonClick = () => {
     if (isOpen) {
       close()
     } else {
@@ -127,9 +123,9 @@ const Dropdown = forwardRef((props, ref) => {
       </Fragment>
     )
   }
-  const getCurLabel = selectedVals => {
+  const getCurLabel = vals => {
     const curOption = options.filter(item =>
-      item.value == selectedVals ? selectedVals[0] : ''
+      item.value == vals ? vals[0] : ''
     )
     return curOption.length ? curOption[0].label : ''
   }

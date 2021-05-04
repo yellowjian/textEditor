@@ -1,5 +1,3 @@
-import React, { useEffect, useRef, Fragment } from 'react'
-import { render } from 'react-dom'
 import constants from './constants'
 
 function Menu(props) {

@@ -8,7 +8,6 @@ import { createPortal } from 'react-dom'
 import { forwardRef } from 'react'
 import cx from 'classnames'
 import BaseComponent from './baseComponent'
-import { Fragment } from 'react/cjs/react.production.min'
 import Button from './button'
 import withThemeContext from '../hoc/withThemeContext'
 import { getCSS } from '../utils/utils'
@@ -35,17 +34,17 @@ const Modal = forwardRef((props, ref) => {
   const modalRef = createRef()
   let childComponent = children
   const themeStyle = {
-    ... (modalPosition && { 
+    ... (modalPosition && {
       left: `${modalPosition.left}px`,
       top: `${modalPosition.top}px`,
     }),
-    display: show? 'block': 'none',
+    display: show ? 'block' : 'none',
     ...themeCss
   }
   const modalContent = css({
     color: getCSS(themeConfig.modal.fontColor),
     backgroundColor: getCSS(themeConfig.modal.backgroundColor),
-    ... (width && { 
+    ... (width && {
       width: `${width}px`,
     }),
   })
@@ -63,16 +62,16 @@ const Modal = forwardRef((props, ref) => {
     setModalPosition(position)
   }, [position])
 
-  const updateShow = isShow => {
-    setShow(isShow)
+  const updateShow = s => {
+    setShow(s)
   }
 
   useImperativeHandle(ref, () => ({
-    updateShow: isShow => updateShow(isShow),
+    updateShow: s => updateShow(s),
     el: modalRef.current ? modalRef.current.el : null
   }))
   const getHeader = () => {
-    return(
+    return (
       <div className='modal-header' css={modalHeader}>
         <div className='modal-title'>
           {title}
@@ -81,7 +80,7 @@ const Modal = forwardRef((props, ref) => {
     )
   }
   const getFooter = () => {
-    return(
+    return (
       <div className='modal-footer' css={modalFooter}>
         <div>
           <Button
@@ -96,22 +95,22 @@ const Modal = forwardRef((props, ref) => {
       </div>
     )
   }
-  if(onCancel && onOk) {
+  if (onCancel && onOk) {
     let header = getHeader()
     let footer = getFooter()
     childComponent = <div className='modal-content' key='model-content' css={modalContent}>{header}<div className='modal-body scrollbar-y'>{children}</div>{footer}</div>
   }
   return modalRoot
     ? createPortal(
-        <BaseComponent
-          {...props}
-          ref={modalRef}
-          themeCss={themeStyle}
-          className={modalClass}
-          renderChildComponent={() => childComponent}
-        />,
-        modalRoot
-      )
+      <BaseComponent
+        {...props}
+        ref={modalRef}
+        themeCss={themeStyle}
+        className={modalClass}
+        renderChildComponent={() => childComponent}
+      />,
+      modalRoot
+    )
     : null
 })
 

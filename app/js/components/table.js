@@ -1,11 +1,9 @@
 import React from 'react'
 import { createRef } from 'react'
-import cx from 'classnames'
 import Icon from './icon'
 
 function Table(props) {
-  const { className, column, data } = props
-  const btnClass = cx('scrollbar-x', className)
+  const { column, data } = props
   const scrollRef = createRef()
   const rowHeight = '28px'
   const tableScroll = () => {

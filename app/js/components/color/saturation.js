@@ -1,8 +1,8 @@
-import { forwardRef, useEffect, useRef, } from 'react'
+import { forwardRef, useEffect, useRef } from 'react'
 import throttle from 'lodash/throttle'
 import { calculateChange } from './utils'
 
-const Saturation = forwardRef((props, ref) => {
+const Saturation = forwardRef(props => {
   const { hsl, onChange, hsv } = props
   const saturationRef = useRef()
   const saturationThrottle = throttle((fn, data, e) => {

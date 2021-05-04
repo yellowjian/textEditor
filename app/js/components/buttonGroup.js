@@ -1,10 +1,8 @@
-import React, { forwardRef, useState, useEffect } from 'react'
+import { forwardRef, useState, useEffect } from 'react'
 import cx from 'classnames'
-import withThemeContext from '../hoc/withThemeContext'
-import { getCSS } from '../utils/utils'
 import Button from './button'
 
-const ButtonGroup = forwardRef((props, ref) => {
+const ButtonGroup = forwardRef(props => {
   const { options, onClick, value, className } = props
 
   const buttonGroupClass = cx('button-group', className)
@@ -16,7 +14,7 @@ const ButtonGroup = forwardRef((props, ref) => {
   }, [value])
 
   const onButtonClick = (e, option) => {
-    if(option == selectItem) return 
+    if (option === selectItem) return
     onClick && onClick(e, option)
     setSelectItem(option)
   }

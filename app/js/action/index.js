@@ -6,7 +6,7 @@ const initApplication = () => ({
 
 const updateData = (keys, data) => ({
   type: Types.UPDATE_DATA,
-  keys, 
+  keys,
   data
 })
 const updateTheme = appTheme => ({

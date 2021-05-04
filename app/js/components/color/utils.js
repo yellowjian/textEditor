@@ -34,11 +34,11 @@ const calculateChange = (e, hsl, container) => {
 
 const checkboardCache = {}
 
-const render = (c1, c2, size, serverCanvas) => {
-  if (typeof document === 'undefined' && !serverCanvas) {
+const render = (c1, c2, size, ServerCanvas) => {
+  if (typeof document === 'undefined' && !ServerCanvas) {
     return null
   }
-  const canvas = serverCanvas ? new serverCanvas() : document.createElement('canvas')
+  const canvas = ServerCanvas ? new ServerCanvas() : document.createElement('canvas')
   canvas.width = size * 2
   canvas.height = size * 2
   const ctx = canvas.getContext('2d')
@@ -168,13 +168,6 @@ const calculateAlpha = (e, hsl, direction, initialA, container) => {
   return null
 }
 
-const red = {
-  hsl: { a: 1, h: 0, l: 0.5, s: 1 },
-  hex: '#ff0000',
-  rgb: { r: 255, g: 0, b: 0, a: 1 },
-  hsv: { h: 0, s: 1, v: 1, a: 1 },
-}
-
 const simpleCheckForValidColor = (data) => {
   const keysToCheck = ['r', 'g', 'b', 'a', 'h', 's', 'l', 'v']
   let checked = 0
@@ -217,24 +210,5 @@ const toState = (data, oldHue) => {
     source: data.source,
   }
 }
-
-const isValidHex = (hex) => {
-  // disable hex4 and hex8
-  const lh = (String(hex).charAt(0) === '#') ? 1 : 0
-  return hex.length !== (4 + lh) && hex.length < (7 + lh) && tinycolor(hex).isValid()
-}
-
-const getContrastingColor = (data) => {
-  if (!data) {
-    return '#fff'
-  }
-  const col = toState(data)
-  if (col.hex === 'transparent') {
-    return 'rgba(0,0,0,0.4)'
-  }
-  const yiq = ((col.rgb.r * 299) + (col.rgb.g * 587) + (col.rgb.b * 114)) / 1000
-  return (yiq >= 128) ? '#000' : '#fff'
-}
-
 
 export { calculateChange, get, calculateSlider, calculateAlpha, toState, simpleCheckForValidColor }

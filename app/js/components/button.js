@@ -1,19 +1,19 @@
-import React, { forwardRef } from 'react'
+import { forwardRef } from 'react'
 import cx from 'classnames'
 import withThemeContext from '../hoc/withThemeContext'
-import { getCSS } from '../utils/utils'
 import BaseComponent from './baseComponent'
 import Icon from './icon'
+import { getCSS } from '../utils/utils'
 
 const Button = forwardRef((props, ref) => {
-  const { className, type, theme, themeCss = {}, isSelected = false, disabled = false, iconShow = true, icon, iconPosition = 'left' } = props
+  const { className, type, theme, themeCss = {}, iconShow = true, icon, iconPosition = 'left' } = props
   const themeConfig = theme.config
   
-  const themeStyle = themeConfig? {
-    color: getCSS(themeConfig.button.fontColor),
-    boxShadow: `1px 1px 3px ${getCSS(themeConfig.button.shadowColor)}`,
-    backgroundColor: getCSS(themeConfig.button.backgroundColor),
-    borderColor: `${getCSS(themeConfig.button.borderColorTop)} ${getCSS(themeConfig.button.borderColorRight)} 
+  const themeStyle = themeConfig ? {
+    'color': getCSS(themeConfig.button.fontColor),
+    'boxShadow': `1px 1px 3px ${getCSS(themeConfig.button.shadowColor)}`,
+    'backgroundColor': getCSS(themeConfig.button.backgroundColor),
+    'borderColor': `${getCSS(themeConfig.button.borderColorTop)} ${getCSS(themeConfig.button.borderColorRight)} 
       ${getCSS(themeConfig.button.borderColorBottom)} ${getCSS(themeConfig.button.borderColorLeft)}`,
     ':hover': {
       color: getCSS(themeConfig.button.hover.fontColor),
@@ -28,11 +28,11 @@ const Button = forwardRef((props, ref) => {
       backgroundColor: getCSS(themeConfig.button.backgroundColor),
     },
     ...themeCss
-  }: themeCss
+  } : themeCss
 
   const buttonClass = cx('button', className, { [`button-${type}`]: type })
-  const iconClass = cx('icon-current', {'icon-loading': icon=='loading', 'icon-left': iconPosition == 'left', 'icon-right': iconPosition == 'right'})
-  const renderChildComponent = iconShow && icon? () => <Icon type={icon} key='button_icon' className={iconClass}/>: null
+  const iconClass = cx('icon-current', {'icon-loading': icon == 'loading', 'icon-left': iconPosition == 'left', 'icon-right': iconPosition == 'right'})
+  const renderChildComponent = iconShow && icon ? () => <Icon type={icon} key='button_icon' className={iconClass}/> : null
   return (
     <BaseComponent
       {...props}

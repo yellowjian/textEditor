@@ -1,9 +1,8 @@
-import { fromJS } from 'immutable'
+import produce from 'immer'
 import types from '../action/type'
-import { updateStateByKeys } from '../utils/utils'
 
-let initState = fromJS({
-  appTheme: 'light',
+let initState = {
+  appTheme: 'dark',
   editor: {},
   menuItemStatus: {
     head: false,
@@ -23,24 +22,25 @@ let initState = fromJS({
     headVal: '',
     listVal: '',
   }
-})
-
-export default function initReducer(state = initState, action) {
-  switch (action.type) {
-    case types.UPDATE_DATA:
-      state = updateStateByKeys(state, action.keys, action.data)
-      break
-    case types.UPDATE_THEME:
-      state = state.set('appTheme', action.appTheme)
-      break
-    case types.UPDATE_MENU_VAL:
-      state = updateStateByKeys(state, ['menuItemVal'], action.menuItemVal)
-      break 
-    case types.UPDATE_EDITOR:
-      state = updateStateByKeys(state, ['editor'], action.editor)
-      break
-    case types.UPDATE_MENU_ITEM:
-      state = updateStateByKeys(state, ['menuItemStatus'], action.menuItemStatus)
-  }
-  return state
 }
+const initReducer = (state = initState, action) =>
+  produce(state, draft => {
+    switch (action.type) {
+      case types.UPDATE_THEME:
+        draft.appTheme = action.appTheme
+        break
+      case types.UPDATE_MENU_VAL:
+        draft.menuItemVal = action.menuItemVal
+        break
+      case types.UPDATE_EDITOR:
+        draft.editor = action.editor
+        break
+      case types.UPDATE_MENU_ITEM:
+        draft.menuItemStatus = action.menuItemStatus
+        break
+      default:
+        break
+    }
+  })
+
+export default initReducer

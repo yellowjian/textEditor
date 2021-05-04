@@ -1,1 +1,1 @@
-first commit 
+text editor for blog

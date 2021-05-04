@@ -1,13 +1,11 @@
-import { forwardRef, useEffect, useRef, useState } from 'react'
-import { calculateAlpha } from './utils'
+import { forwardRef, useEffect, useState } from 'react'
 
-const ChromeFields = forwardRef((props, ref) => {
-  const { hsl, onChange, direction, renderers = {}, initView = 'hex' } = props
-  const alphaRef = useRef()
+const ChromeFields = forwardRef(props => {
+  const { hsl, initView = 'hex' } = props
   const [view, setView] = useState('')
 
   useEffect(()=>{
-    if(hsl.a != 1 && initView == "hex") {
+    if (hsl.a != 1 && initView == 'hex') {
       setView('rgb')
     } else {
       setView(initView)
@@ -15,9 +13,9 @@ const ChromeFields = forwardRef((props, ref) => {
   }, [])
 
   useEffect(()=>{
-    if(hsl.a != 1 && view == "hex") {
+    if (hsl.a != 1 && view == 'hex') {
       setView('rgb')
-    } 
+    }
   }, [hsl.a])
 
   const toggleViews = () => {

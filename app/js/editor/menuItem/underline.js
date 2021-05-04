@@ -7,10 +7,8 @@ import { css } from '@emotion/core'
 import constants from '../constants'
 
 function Underline(props) {
-  const { data, theme, pureMenu = false } = props
+  const { initVal, initStatus, theme, pureMenu = false } = props
   const themeConfig = theme.config
-  const editor = data.get('editor')
-  const initStatus = data.get('menuItemStatus').toJS()
   const menuIconTheme = css({
     color: getCSS(themeConfig.button.fontColor),
     '&:hover': {
@@ -43,7 +41,8 @@ function Underline(props) {
 }
 const mapStateToProps = (state, ownProps) => {
   return {
-    data: state
+    initStatus: state.menuItemStatus,
+    editor: state.editor,
   }
 }
 

@@ -7,13 +7,13 @@ import { getCSS } from '../utils/utils'
 import Modal from './modal'
 
 const ToolTip = forwardRef((props, ref) => {
-  const { 
-    className, 
-    theme, 
-    themeCss = {}, 
-    tooltipText, 
-    tooltipClassName, 
-    isShow = false, 
+  const {
+    className,
+    theme,
+    themeCss = {},
+    tooltipText,
+    tooltipClassName,
+    isShow = false,
     position = 'left',
     extraProps = []
   } = props
@@ -22,62 +22,62 @@ const ToolTip = forwardRef((props, ref) => {
   const radioboxClass = cx('tooltip', className)
   const tooltipRef = useRef()
   const [tooltipModal, setTooltipModal] = useState(null)
-  const themeStyle = themeConfig? {
-      color: getCSS(themeConfig.fontColor),
-      backgroundColor: getCSS(themeConfig.tooltip.backgroundColor),
-      borderColor: `${getCSS(themeConfig.tooltip.borderColorTop)} ${getCSS(themeConfig.tooltip.borderColorRight)} 
+  const themeStyle = themeConfig ? {
+    'color': getCSS(themeConfig.fontColor),
+    'backgroundColor': getCSS(themeConfig.tooltip.backgroundColor),
+    'borderColor': `${getCSS(themeConfig.tooltip.borderColorTop)} ${getCSS(themeConfig.tooltip.borderColorRight)} 
         ${getCSS(themeConfig.tooltip.borderColorBottom)} ${getCSS(themeConfig.tooltip.borderColorLeft)}`,
-      '&.top': {
-        ':before': {
-          borderTopColor: getCSS(themeConfig.tooltip.borderColorRight)
-        },
-        ':after': {
-          borderTopColor: getCSS(themeConfig.tooltip.backgroundColor)
-        }
+    '&.top': {
+      ':before': {
+        borderTopColor: getCSS(themeConfig.tooltip.borderColorRight)
       },
-      '&.right': {
-        ':before': {
-          borderRightColor: getCSS(themeConfig.tooltip.borderColorTop)
-        },
-        ':after': {
-          borderRightColor: getCSS(themeConfig.tooltip.backgroundColor)
-        }
+      ':after': {
+        borderTopColor: getCSS(themeConfig.tooltip.backgroundColor)
+      }
+    },
+    '&.right': {
+      ':before': {
+        borderRightColor: getCSS(themeConfig.tooltip.borderColorTop)
       },
-      '&.bottom': {
-        ':before': {
-          borderBottomColor: getCSS(themeConfig.tooltip.borderColorTop)
-        },
-        ':after': {
-          borderBottomColor: getCSS(themeConfig.tooltip.backgroundColor)
-        }
+      ':after': {
+        borderRightColor: getCSS(themeConfig.tooltip.backgroundColor)
+      }
+    },
+    '&.bottom': {
+      ':before': {
+        borderBottomColor: getCSS(themeConfig.tooltip.borderColorTop)
       },
-      '&.left': {
-        ':before': {
-          borderLeftColor: getCSS(themeConfig.tooltip.borderColorRight)
-        },
-        ':after': {
-          borderLeftColor: getCSS(themeConfig.tooltip.backgroundColor)
-        }
+      ':after': {
+        borderBottomColor: getCSS(themeConfig.tooltip.backgroundColor)
+      }
+    },
+    '&.left': {
+      ':before': {
+        borderLeftColor: getCSS(themeConfig.tooltip.borderColorRight)
       },
-      ...themeCss
-    }
-  : themeCss
+      ':after': {
+        borderLeftColor: getCSS(themeConfig.tooltip.backgroundColor)
+      }
+    },
+    ...themeCss
+  }
+    : themeCss
 
-  const modalClass = cx('tooltip-popup', tooltipClassName, position)  
-  const onMouseIn = (isShow) => {
-    tooltipRef.current.updateShow(isShow)
+  const modalClass = cx('tooltip-popup', tooltipClassName, position)
+  const onMouseIn = (show) => {
+    tooltipRef.current.updateShow(show)
   }
   useEffect(() => {
     setTooltipModal(renderModal())
   }, [themeConfig])
   const renderModal = () => {
     return (
-      <Modal 
+      <Modal
         ref={tooltipRef}
         className={modalClass}
         themeCss={themeStyle}
         isShow={isShow}
-        modalRoot={ref.current ? ref.current.el: null}
+        modalRoot={ref.current ? ref.current.el : null}
       >
         {tooltipText}
       </Modal>

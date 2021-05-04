@@ -7,15 +7,15 @@ export default class Command {
   }
   queryCommandValue(name) {
     return document.queryCommandValue(name)
-  }   
+  }
   queryCommandState(name) {
     return document.queryCommandState(name)
-  } 
+  }
 
   createElementFromHTML(htmlString) {
     let div = document.createElement('div')
     div.innerHTML = htmlString.trim()
-    return div.firstChild 
+    return div.firstChild
   }
   _execCommand(name, value) {
     document.execCommand(name, false, value)
@@ -26,15 +26,15 @@ export default class Command {
     let range = editor.selection.getRange()
 
     if (this.queryCommandSupported('insertHTML')) {
-        // W3C
-        this._execCommand('insertHTML', html)
+      // W3C
+      this._execCommand('insertHTML', html)
     } else if (range.insertNode) {
-        // IE
-        range.deleteContents()
-        range.insertNode(createElementFromHTML(html))
+      // IE
+      range.deleteContents()
+      range.insertNode(createElementFromHTML(html))
     } else if (range.pasteHTML) {
-        // IE <= 10
-        range.pasteHTML(html)
+      // IE <= 10
+      range.pasteHTML(html)
     }
   }
   execCmd(name, value) {
@@ -47,7 +47,7 @@ export default class Command {
     if (this[cmdName]) {
       this[cmdName](value)
     } else {
-        this._execCommand(name, value)
+      this._execCommand(name, value)
     }
   }
 }

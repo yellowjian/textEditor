@@ -2,16 +2,16 @@ import React, {Fragment} from 'react'
 import cx from 'classnames'
 import { getCSS } from '../utils/utils'
 import withThemeContext from '../hoc/withThemeContext'
-import { jsx, css } from '@emotion/core'
+import { jsx } from '@emotion/core'
 
 function Icon(props) {
-  const { className, theme, themeCss = {}, type } = props
+  const { className, theme, type } = props
   const iconClass = cx('icon', className)
   const themeConfig = theme.config
 
   const themeStyle = themeConfig ? {
     fill: getCSS(themeConfig.icon.fontColor),
-  }: {}
+  } : {}
 
   const basicProps = {
     className: iconClass,

@@ -42,7 +42,7 @@ const data = [
     'year': 100,
     'second': 10,
     'day': 1,
-    'country': "amac",
+    'country': 'amac',
     'week': 1,
   },
   {
@@ -50,7 +50,7 @@ const data = [
     'year': 100,
     'second': 10,
     'day': 1,
-    'country': "amac",
+    'country': 'amac',
     'week': 1,
   },
   {
@@ -58,7 +58,7 @@ const data = [
     'year': 100,
     'second': 10,
     'day': 1,
-    'country': "amac",
+    'country': 'amac',
     'week': 1,
   },
   {
@@ -66,7 +66,7 @@ const data = [
     'year': 100,
     'second': 10,
     'day': 1,
-    'country': "amac",
+    'country': 'amac',
     'week': 1,
   },
   {
@@ -74,7 +74,7 @@ const data = [
     'year': 100,
     'second': 10,
     'day': 1,
-    'country': "amac",
+    'country': 'amac',
     'week': 1,
   },
   {
@@ -82,7 +82,7 @@ const data = [
     'year': 100,
     'second': 10,
     'day': 1,
-    'country': "amac",
+    'country': 'amac',
     'week': 1,
   },
   {
@@ -90,7 +90,7 @@ const data = [
     'year': 100,
     'second': 10,
     'day': 1,
-    'country': "amac",
+    'country': 'amac',
     'week': 1,
   },
   {
@@ -98,7 +98,7 @@ const data = [
     'year': 100,
     'second': 10,
     'day': 1,
-    'country': "amac",
+    'country': 'amac',
     'week': 1,
   },
   {
@@ -106,7 +106,7 @@ const data = [
     'year': 100,
     'second': 10,
     'day': 1,
-    'country': "amac",
+    'country': 'amac',
     'week': 1,
   },
   {
@@ -114,7 +114,7 @@ const data = [
     'year': 100,
     'second': 10,
     'day': 1,
-    'country': "amac",
+    'country': 'amac',
     'week': 1,
   },
   {
@@ -122,7 +122,7 @@ const data = [
     'year': 100,
     'second': 10,
     'day': 1,
-    'country': "amac",
+    'country': 'amac',
     'week': 1,
   },
   {
@@ -130,7 +130,7 @@ const data = [
     'year': 100,
     'second': 10,
     'day': 1,
-    'country': "amac",
+    'country': 'amac',
     'week': 1,
   },
   {
@@ -138,7 +138,7 @@ const data = [
     'year': 100,
     'second': 10,
     'day': 1,
-    'country': "amac",
+    'country': 'amac',
     'week': 1,
   },
   {
@@ -146,7 +146,7 @@ const data = [
     'year': 100,
     'second': 10,
     'day': 1,
-    'country': "amac",
+    'country': 'amac',
     'week': 1,
   },
   {
@@ -154,7 +154,7 @@ const data = [
     'year': 100,
     'second': 10,
     'day': 1,
-    'country': "amac",
+    'country': 'amac',
     'week': 1,
   }
 ]

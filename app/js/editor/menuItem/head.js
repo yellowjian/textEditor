@@ -9,10 +9,7 @@ import Dropdown from '../../components/dropdown/dropdown'
 import constants from '../constants'
 
 function Head(props) {
-  const { theme, data } = props
-  const initVal = data.get('menuItemVal').toJS()
-  const initStatus = data.get('menuItemStatus').toJS()
-  const editor = data.get('editor')
+  const { theme, initVal, initStatus, editor } = props
   const themeConfig = theme.config
   const menuIconTheme = css({
     color: getCSS(themeConfig.button.fontColor),
@@ -49,7 +46,10 @@ function Head(props) {
 }
 const mapStateToProps = (state, ownProps) => {
   return {
-    data: state
+    initVal: state.menuItemVal,
+    initStatus: state.menuItemStatus,
+    editor: state.editor,
   }
 }
+
 export default withThemeContext(connect(mapStateToProps)(Head))

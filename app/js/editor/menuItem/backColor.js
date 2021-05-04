@@ -9,9 +9,8 @@ import constants from '../constants'
 import { SketchPicker } from 'react-color'
 
 function BackColor(props) {
-  const { data, theme, } = props
+  const { editor, theme } = props
   const themeConfig = theme.config
-  const editor = data.get('editor')
   const menuIconTheme = css({
     color: getCSS(themeConfig.button.fontColor),
     '&:hover': {
@@ -43,7 +42,7 @@ function BackColor(props) {
 }
 const mapStateToProps = (state, ownProps) => {
   return {
-    data: state
+    editor: state.editor,
   }
 }
 

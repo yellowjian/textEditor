@@ -1,31 +1,15 @@
-import React, { useState, useRef, useEffect, useImperativeHandle, forwardRef, createElement, Fragment } from 'react'
+import { useState, Fragment, useRef, useEffect, useImperativeHandle, forwardRef } from 'react'
 import cx from 'classnames'
 import { jsx } from '@emotion/core'
 import withThemeContext from '../hoc/withThemeContext'
 import { getCSS } from '../utils/utils'
 
-
-/**
- * className: class from parent component
- * domType: default is div
- * isSelected: default select status
- * onClick: click function
- */
-
-/**
- * 
- * @param {string} className // class from parent component
- * @param {string} domType // default is div
- * @param {boolean} isSelected // default select status
- * @param {function} isSelected // click function
- */
 const BaseComponent = forwardRef((props, ref) => {
   const {
     domType = 'div',
     className,
     style = {},
     themeCss,
-    value,
     label,
     isSelected = false,
     disabled = false,
@@ -44,14 +28,14 @@ const BaseComponent = forwardRef((props, ref) => {
     setSelected(isSelected)
   }, [isSelected])
 
-  useImperativeHandle(ref, () => ({ el: basicRef.current, 'selected': selected }))
+  useImperativeHandle(ref, () => ({ 'el': basicRef.current, 'selected': selected }))
 
   const themeStyle = themeConfig ? {
-    color: getCSS(themeConfig.linkColor),
+    'color': getCSS(themeConfig.linkColor),
     '&.selected': {
       color: getCSS(themeConfig.selectedColor)
     },
-  }: {}
+  } : {}
   const basicClass = cx('basic', { 'selected': selected, 'disabled': disabled }, className)
   
   const itemClick = () => {
@@ -73,12 +57,12 @@ const BaseComponent = forwardRef((props, ref) => {
     let content = []
     renderChildComponent && content.push(renderChildComponent())
     label && content.push(label)
-    if(iconPosition == 'right') content.reverse()
+    if (iconPosition == 'right') content.reverse()
     return content
   }
   const isInput = (domType == 'input' || domType == 'textarea')
 
-  const component = jsx(domType, basicProps, !isInput? renderContent() : null)
+  const component = jsx(domType, basicProps, !isInput ? renderContent() : null)
   return (
     <Fragment>
       {component}

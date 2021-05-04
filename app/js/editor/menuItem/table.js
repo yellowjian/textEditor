@@ -11,10 +11,8 @@ import RadioBoxGroup from '../../components/radioboxGroup'
 import Button from '../../components/button'
 
 function Table(props) {
-  const { data, theme } = props
+  const { initVal, initStatus, theme } = props
   const themeConfig = theme.config
-  const initStatus = data.get('menuItemStatus').toJS()
-  const editor = data.get('editor')
   const menuIconTheme = css({
     color: getCSS(themeConfig.button.fontColor),
     '&:hover': {
@@ -92,7 +90,8 @@ function Table(props) {
 }
 const mapStateToProps = (state, ownProps) => {
   return {
-    data: state
+    initStatus: state.menuItemStatus,
+    editor: state.editor,
   }
 }
 

@@ -9,9 +9,8 @@ import constants from '../constants'
 import UA from '../ua'
 
 function Quote(props) {
-  const { theme, data } = props
+  const { theme, editor } = props
   const themeConfig = theme.config
-  const editor = data.get('editor')
   const menuIconTheme = css({
     color: getCSS(themeConfig.button.fontColor),
     '&:hover': {
@@ -62,7 +61,7 @@ function Quote(props) {
 }
 const mapStateToProps = (state, ownProps) => {
   return {
-    data: state
+    editor: state.editor,
   }
 }
 export default withThemeContext(connect(mapStateToProps)(Quote))

@@ -1,7 +1,7 @@
 import { forwardRef, useEffect, useRef } from 'react'
 import { calculateAlpha, get } from './utils'
 
-const Alpha = forwardRef((props, ref) => {
+const Alpha = forwardRef(props => {
   const { hsl, onChange, direction = 'horizontal', a, rgb, renderers = {} } = props
   const alphaRef = useRef()
 
@@ -48,7 +48,7 @@ const Alpha = forwardRef((props, ref) => {
             <div className='circle' />
           </div>
         </div>
-      </div>  
+      </div>
     </div>
   )
 })

@@ -1,10 +1,10 @@
-import React, { forwardRef, useState, useEffect } from 'react'
+import { forwardRef, useState, useEffect } from 'react'
 import { simpleCheckForValidColor, toState } from './utils'
 
 
 function ColorWrap(Picker) {
-  return forwardRef((props, ref) => {
-    const { color = { h: 250, s: 0.50, l: 0.20, a: 1,}, onChange } = props
+  return forwardRef((props) => {
+    const { color = { h: 250, s: 0.50, l: 0.20, a: 1 } } = props
     const [initColor, setInitColor] = useState(toState(color, 0))
     useEffect(() => {
       setInitColor({
@@ -12,7 +12,7 @@ function ColorWrap(Picker) {
       })
     }, [color])
 
-    const handleChange = (data, event) => {
+    const handleChange = data => {
       const isValidColor = simpleCheckForValidColor(data)
       if (isValidColor) {
         const colors = toState(data, data.h || initColor.oldHue)
@@ -26,7 +26,7 @@ function ColorWrap(Picker) {
         { ...props }
         { ...initColor }
         onChange={(data, event) => handleChange(data, event) }
-      /> 
+      />
     )
   })
 }

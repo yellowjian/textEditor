@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from 'react'
-import { render } from 'react-dom'
+import { useEffect } from 'react'
 import { connect } from 'react-redux'
 import Actions from '../action'
 import ThemeContext from '../hooks/themeContext'
@@ -7,8 +6,7 @@ import THEMECONFIG from '../utils/themeConstants'
 import TextEditor from './textEditor'
 
 function IndexView(props) {
-  const { data, initApplicationAction } = props
-  const appTheme = data.get('appTheme')
+  const { appTheme, initApplicationAction } = props
   let themeConfig = THEMECONFIG[appTheme]
 
   useEffect(() => {
@@ -24,9 +22,9 @@ function IndexView(props) {
   )
 }
 
-const mapStateToProps = (state, ownProps) => {
+const mapStateToProps = (state) => {
   return {
-    data: state
+    appTheme: state.appTheme
   }
 }
 

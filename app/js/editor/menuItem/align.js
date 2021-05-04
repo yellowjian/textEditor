@@ -9,9 +9,8 @@ import Dropdown from '../../components/dropdown/dropdown'
 import constants from '../constants'
 
 function Align(props) {
-  const { theme, data } = props
+  const { theme, editor } = props
   const themeConfig = theme.config
-  const editor = data.get('editor')
   const menuIconTheme = css({
     color: getCSS(themeConfig.button.fontColor),
     '&:hover': {
@@ -39,7 +38,7 @@ function Align(props) {
 }
 const mapStateToProps = (state, ownProps) => {
   return {
-    data: state
+    editor: state.editor,
   }
 }
 export default withThemeContext(connect(mapStateToProps)(Align))

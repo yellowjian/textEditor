@@ -35,17 +35,17 @@ export default class Editor {
         table: false
       }
     }
-    if(!selectionELem) {
+    if (!selectionELem) {
       return
     }
     let nodeName = selectionELem.nodeName
-    if(nodeName == 'A') {
+    if (nodeName == 'A') {
       curStatus.status.link = true
     }
     let headReg = /^h/i
     let cmdHeadValue = this.cmd.queryCommandValue('formatBlock')
-    let cmdListValue = this.cmd.queryCommandState('insertUnOrderedList') ? 'unsorted-list' : 
-      (this.cmd.queryCommandState('insertOrderedList') ? 'sorted-list': '')
+    let cmdListValue = this.cmd.queryCommandState('insertUnOrderedList') ? 'unsorted-list' :
+      (this.cmd.queryCommandState('insertOrderedList') ? 'sorted-list' : '')
     let cmdBoldValue = this.cmd.queryCommandValue('bold')
     let cmdItalicValue = this.cmd.queryCommandState('italic')
     let cmdUnderlineValue = this.cmd.queryCommandState('underline')
