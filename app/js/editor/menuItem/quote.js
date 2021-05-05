@@ -12,7 +12,7 @@ function Quote(props) {
   const { theme, editor } = props
   const themeConfig = theme.config
   const menuIconTheme = css({
-    color: getCSS(themeConfig.button.fontColor),
+    'color': getCSS(themeConfig.button.fontColor),
     '&:hover': {
       color: getCSS(themeConfig.button.active.fontColor)
     }
@@ -30,8 +30,8 @@ function Quote(props) {
       }
       return
     }
-    let content = void 0
-    let targetELem = void 0;
+    let content
+    let targetELem;
     content = selectionElem.innerText
     if (nodeName === 'P') {
       // 将 P 转换为 quote
@@ -59,7 +59,7 @@ function Quote(props) {
     </div>
   )
 }
-const mapStateToProps = (state, ownProps) => {
+const mapStateToProps = (state) => {
   return {
     editor: state.editor,
   }

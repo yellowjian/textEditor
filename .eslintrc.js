@@ -11,7 +11,9 @@ module.exports = {
     'sourceType': 'module'
   },
   'rules': {
-
+    'eqeqeq': ['warn', 'allow-null'],
+    'curly': [2, 'all'], // 必须使用 if(){} 中的{}
+    'default-case': 2, //  switch语句最后必须有default
     // 错误
     'array-callback-return': 'error',
     'brace-style': ['error', '1tbs', {

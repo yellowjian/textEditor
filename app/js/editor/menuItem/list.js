@@ -9,7 +9,7 @@ import Dropdown from '../../components/dropdown/dropdown'
 import constants from '../constants'
 
 function List(props) {
-  const { initVal, theme, data } = props
+  const { menusVal, theme, data } = props
   const themeConfig = theme.config
   const menuIconTheme = css({
     color: getCSS(themeConfig.button.fontColor),
@@ -27,7 +27,7 @@ function List(props) {
         options={constants.listOptions}
         width={200}
         customBtn={customBtn()}
-        value={initVal.listVal}
+        value={menusVal.listVal}
         onChange={val => console.log(val)}
       ></Dropdown>
     </div>
@@ -35,7 +35,7 @@ function List(props) {
 }
 const mapStateToProps = (state, ownProps) => {
   return {
-    initVal: state.menuItemVal,
+    menusVal: state.menusVal,
   }
 }
 export default withThemeContext(connect(mapStateToProps)(List))

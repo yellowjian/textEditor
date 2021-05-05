@@ -1,5 +1,4 @@
-import React, { useState, useEffect, useRef, Fragment } from 'react'
-import { render } from 'react-dom'
+import React, { useState, useEffect, useRef } from 'react'
 import { connect } from 'react-redux'
 import withThemeContext from '../../hoc/withThemeContext'
 import { getCSS } from '../../utils/utils'
@@ -14,10 +13,10 @@ import 'highlight.js/styles/agate.css'
 
 
 function Code(props) {
-  const { editor, theme, pureMenu = false } = props
+  const { editor, theme } = props
   const themeConfig = theme.config
   const menuIconTheme = css({
-    color: getCSS(themeConfig.button.fontColor),
+    'color': getCSS(themeConfig.button.fontColor),
     '&:hover': {
       color: getCSS(themeConfig.button.active.fontColor)
     }
@@ -25,26 +24,25 @@ function Code(props) {
   const linkRef = useRef()
   const areaRef = useRef()
   const codeRef = useRef()
-  const languageRef = useRef()
   const numRef = useRef()
   const [show, setShow] = useState(false)
   const [isFirst, setIsFirst] = useState(false)
   const [code, setCode] = useState('')
   const [rowNumber, setRowNumber] = useState('1')
   const [language, setLanguage] = useState('javascript')
-  const codeClick = (e) => {
+  const codeClick = () => {
     setShow(!show)
-    let linkelem = void 0
+    let linkelem
 
     linkelem = editor.selection.getSelectionContainerElem()
-    if(linkelem) {
+    if (linkelem) {
       return
     }
   }
   const handleOk = () => {
     setShow(!show)
-    if (code == '') {
-      return 
+    if (code === '') {
+      return
     }
     editor.cmd.execCmd('insertHTML', `<div class='code-part' contenteditable='false'>${numRef.current.el.outerHTML}<pre>${codeRef.current.outerHTML}</pre></div>`)
   }
@@ -52,19 +50,15 @@ function Code(props) {
     setShow(!show)
   }
   
-  const updateCode = (e) => {
-    setCode(e.currentTarget.textContent)
-  }
   useEffect(() => {
     let codeArea = areaRef.current && areaRef.current.el
-    let codeShow = codeRef.current
-    if(codeArea && !isFirst) {
+    if (codeArea && !isFirst) {
       setIsFirst(true)
       const events = ['ready', 'load', 'keyup', 'keydown', 'change']
       events.forEach((item) => {
-        codeArea.addEventListener(item, function(event) {
-          // handle tab key down 
-          if (event.type == 'keydown' && event.which == 9) {
+        codeArea.addEventListener(item, function (event) {
+          // handle tab key down
+          if (event.type === 'keydown' && event.which === 9) {
             event.preventDefault()
             handleTab(codeArea)
           }
@@ -81,24 +75,24 @@ function Code(props) {
     }
   }, [language])
 
-  HTMLElement.prototype.html = function(str){
-    if(typeof str === 'string') {
-        this.innerHTML = str
-        return this
-    } else { 
-        return this.innerHTML
-    }
+  HTMLElement.prototype.html = function (str) {
+    if (typeof str === 'string') {
+      this.innerHTML = str
+      return this
+    } else {
+      return this.innerHTML
+    }
   }
 
   function correctTextareaHight() {
     let codeArea = areaRef.current.el
     let numEle = numRef.current.el
     let codeShow = codeRef.current
-    let outerHeight = codeArea.offsetHeight 
+    let outerHeight = codeArea.offsetHeight
     let innerHeight = codeArea.scrollHeight
     let combinedScrollHeight = innerHeight + 2
     
-    if (outerHeight < combinedScrollHeight){
+    if (outerHeight < combinedScrollHeight) {
       codeArea.style.height = combinedScrollHeight + 'px'
       codeShow.style.height = combinedScrollHeight + 'px'
       numEle.style.height = (combinedScrollHeight - 12) + 'px'
@@ -113,7 +107,7 @@ function Code(props) {
     ele.selectionEnd = s + 1
   }
   function hightlightSyntax() {
-    let content  = areaRef.current.el.value
+    let content = areaRef.current.el.value
     let codeHolder = codeRef.current
     var escaped = escapeHtml(content)
     codeHolder.html(escaped)
@@ -123,18 +117,32 @@ function Code(props) {
   const codeChanged = (val) => {
     setCode(val)
     const numEle = numRef.current.el
-		let cntline = countLines(val)
-		let tmpArr = numEle.value.split('\n');
-		let cntlineOld = parseInt(tmpArr[tmpArr.length - 1], 10)
-		// if there was a change in line count
-		if (cntline != cntlineOld) {
+    let cntline = countLines(val)
+    let tmpArr = numEle.value.split('\n');
+    let cntlineOld = parseInt(tmpArr[tmpArr.length - 1], 10)
+    // if there was a change in line count
+    if (cntline !== cntlineOld) {
       setRowNumber(updateRowNum(cntline))
-		}
+    }
   }
 
-  function scrollChanged() {
+  const scrollChanged = () => {
     codeRef.current.scrollLeft = areaRef.current.el.scrollLeft
-	}
+  }
+
+  const customHeader = () => {
+    return <div className='code-language'>
+      <div className='title'>插入代码</div>
+      <div>
+        <Dropdown
+          options={constants.languageOptions}
+          width={200}
+          value='javascript'
+          onChange={val => setLanguage(val)}
+        ></Dropdown>
+      </div>
+    </div>
+  }
 
   return (
     <div className='code' ref={linkRef}>
@@ -146,20 +154,12 @@ function Code(props) {
       ></i>
       <Modal
         isShow={show}
-        title={'插入代码'}
+        customHeader={customHeader()}
         width={800}
         onOk={handleOk}
         onCancel={handleCancel}
-        modalRoot={linkRef.current? linkRef.current: null}
+        modalRoot={linkRef.current ? linkRef.current : null}
       >
-        <div className='code-language' ref={languageRef}>
-          <Dropdown
-            options={constants.languageOptions}
-            width={200}
-            value='javascript'
-            onChange={val => setLanguage(val)}
-          ></Dropdown>
-        </div>
         <div className='code-edit-area'>
           <TextArea className='row-number' ref={numRef} cols='3' value={rowNumber} readOnly={true}/>
           <span>
@@ -167,11 +167,11 @@ function Code(props) {
             <pre><code ref={codeRef} className={`syntax-highight scrollbar-y ${language}`}></code></pre>
           </span>
         </div>
-      </Modal> 
+      </Modal>
     </div>
-  ) 
+  )
 }
-const mapStateToProps = (state, ownProps) => {
+const mapStateToProps = (state) => {
   return {
     editor: state.editor,
   }

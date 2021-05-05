@@ -25,7 +25,7 @@ const Modal = forwardRef((props, ref) => {
     className,
     theme,
     width,
-    title,
+    customHeader,
     onCancel,
     onOk
   } = props
@@ -74,7 +74,7 @@ const Modal = forwardRef((props, ref) => {
     return (
       <div className='modal-header' css={modalHeader}>
         <div className='modal-title'>
-          {title}
+          {customHeader}
         </div>
       </div>
     )

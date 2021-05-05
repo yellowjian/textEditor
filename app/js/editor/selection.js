@@ -1,6 +1,9 @@
 import { isContain } from './util'
 import UA from './ua'
 
+/**
+ * 获取编辑的时候的选区
+ */
 export default class Selection {
   constructor(editor) {
     this.editor = editor
@@ -8,7 +11,7 @@ export default class Selection {
   }
   getSelectionContainerElem(range) {
     range = range || this.curRange
-    let elem = void 0
+    let elem
     if (range) {
       elem = range.commonAncestorContainer
       return elem.nodeType === 1 ? elem : elem.parentNode
@@ -16,7 +19,7 @@ export default class Selection {
   }
   getSelectionStartElem(range) {
     range = range || this.curRange
-    var elem = void 0
+    var elem
     if (range) {
       elem = range.startContainer
       return elem.nodeType === 1 ? elem : elem.parentNode
@@ -24,7 +27,7 @@ export default class Selection {
   }
   getSelectionEndElem(range) {
     range = range || this.curRange
-    var elem = void 0
+    var elem
     if (range) {
       elem = range.endContainer
       return elem.nodeType === 1 ? elem : elem.parentNode
@@ -42,7 +45,7 @@ export default class Selection {
 
     // get current selection
     let selection = window.getSelection()
-    if (selection.rangeCount == 0) {
+    if (selection.rangeCount === 0) {
       return
     }
     const range = selection.getRangeAt(0)
@@ -52,7 +55,7 @@ export default class Selection {
       return
     }
 
-    if (containerElem.getAttribute('contenteditable') == 'false') {
+    if (containerElem.getAttribute('contenteditable') === 'false') {
       return
     }
 
@@ -91,7 +94,7 @@ export default class Selection {
   createEmptyRange() {
     let editor = this.editor
     let range = this.getRange()
-    let elem = void 0
+    let elem
     if (!range) {
       return
     }
@@ -136,7 +139,7 @@ export default class Selection {
     } else {
       range.selectNode(elem);
     }
-    if (typeof toStart == 'boolean') {
+    if (typeof toStart === 'boolean') {
       range.collapse(toStart);
     }
     // 存储 range

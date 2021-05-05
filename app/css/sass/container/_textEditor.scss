@@ -230,10 +230,11 @@
 
           .code {
             .code-language {
-              z-index: 3;
-              position: fixed;
-              right: calc(50% - 368px);
-              top: calc(100px + 4em);
+              display: flex;
+
+              .title {
+                flex: 1;
+              }
             }
 
             .code-edit-area {
@@ -244,7 +245,7 @@
                 vertical-align: top;
                 position: absolute;
                 height: auto;
-                margin: calc(4em + 1px) calc(1em + 1px) calc(1em + 1px) calc(1em + 1px);
+                margin: calc(1em + 1px);
                 padding-top: 0.5em;
                 min-height: 448px;
                 overflow: hidden;
@@ -263,7 +264,7 @@
                 width: calc(100% - 2em);
                 min-height: 450px;
                 height: auto;
-                margin: 4em 1em 1em 1em;
+                margin: 1em;
                 font-size: 14px;
                 padding: 0.5em 0.5em 0.5em 4em;
                 tab-size: 4;
@@ -291,7 +292,7 @@
                 padding: calc(0.5em + 1px) calc(0.5em + 1px) calc(0.5em + 1px) calc(4em + 1px);
                 min-height: 450px;
                 height: auto;
-                margin: 4em 1em 1em 1em;
+                margin: 1em;
                 line-height: 1.5em;
                 top: 0;
                 position: absolute;

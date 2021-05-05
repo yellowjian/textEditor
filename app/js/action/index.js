@@ -17,13 +17,13 @@ const updateEditor = editor => ({
   type: Types.UPDATE_EDITOR,
   editor
 })
-const updateMenuItem = menuItemStatus => ({
+const updateMenuItem = menusStatus => ({
   type: Types.UPDATE_MENU_ITEM,
-  menuItemStatus
+  menusStatus
 })
-const updateMenuValue = menuItemVal => ({
+const updateMenuValue = menusVal => ({
   type: Types.UPDATE_MENU_VAL,
-  menuItemVal
+  menusVal
 })
 export default {
   initApplication,

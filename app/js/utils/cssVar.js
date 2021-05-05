@@ -1,7 +1,7 @@
 const cssVar = {
   'gray-11': '#000000',
   'gray-10': '#21252d',
-  'gray-8': '#365049',
+  'gray-8': '#2e2f31',
   'gray-7': '#414d60',
   'gray-2': '#f0f2f5',
   'gray-1': '#e2e6e8',

@@ -65,9 +65,9 @@
         top: auto;
       }
 
-      &::after {
-        margin-top: 0;
-      }
+      // &::after {
+      //   margin-top: 0;
+      // }
 
       &.disabled {
         @include disabled()

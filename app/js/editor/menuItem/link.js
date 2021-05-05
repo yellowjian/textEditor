@@ -1,18 +1,16 @@
-import React, { useState, useEffect, useRef, Fragment } from 'react'
-import { render } from 'react-dom'
+import React, { useState, useRef } from 'react'
 import { connect } from 'react-redux'
 import withThemeContext from '../../hoc/withThemeContext'
 import { getCSS } from '../../utils/utils'
 import { css } from '@emotion/core'
-import constants from '../constants'
 import Modal from '../../components/modal'
 import Input from '../../components/input'
 
 function Link(props) {
-  const { editor, theme, pureMenu = false } = props
+  const { editor, theme } = props
   const themeConfig = theme.config
   const menuIconTheme = css({
-    color: getCSS(themeConfig.button.fontColor),
+    'color': getCSS(themeConfig.button.fontColor),
     '&:hover': {
       color: getCSS(themeConfig.button.active.fontColor)
     }
@@ -21,12 +19,12 @@ function Link(props) {
   const [show, setShow] = useState(false)
   const [linkName, setLinkName] = useState('')
   const [linkUrl, setLinkUrl] = useState('')
-  const linkClick = (e) => {
+  const linkClick = () => {
     setShow(!show)
-    let linkelem = void 0
+    let linkelem
 
     linkelem = editor.selection.getSelectionContainerElem()
-    if(linkelem) {
+    if (linkelem) {
       return
     }
     // // 当前选区在链接里面
@@ -63,15 +61,15 @@ function Link(props) {
         width={500}
         onOk={handleOk}
         onCancel={handleCancel}
-        modalRoot={linkRef.current? linkRef.current: null}
-      > 
+        modalRoot={linkRef.current ? linkRef.current : null}
+      >
         <Input placeholder='链接文字' value={linkName} className='link-input'
           onChange={(e) => {setLinkName(e.target.value)}}/>
         <Input placeholder='https://...' value={linkUrl} className='link-input'
           onChange={(e) => {setLinkUrl(e.target.value)}}/>
       </Modal>
     </div>
-  ) 
+  )
 }
 const mapStateToProps = (state, ownProps) => {
   return {

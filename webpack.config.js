@@ -1,12 +1,11 @@
-const path = require("path")
-const { CleanWebpackPlugin } = require("clean-webpack-plugin")
-const MiniCssExtractPlugin = require("mini-css-extract-plugin")
-const HtmlWebpackPlugin = require("html-webpack-plugin")
+const path = require('path')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 const webpack = require('webpack')
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 const argv = require('minimist')(process.argv.slice(2))
 const DEBUG = !argv.release
-const dist = "acpublic"
+const dist = 'acpublic'
 
 module.exports = {
   mode: 'development',
@@ -18,7 +17,7 @@ module.exports = {
     path: path.resolve(__dirname, dist)
   },
   cache: DEBUG,
-  devtool: DEBUG ? '#inline-source-map' : false,  //cheap-module-eval-source-map
+  devtool: DEBUG ? '#inline-source-map' : false, // cheap-module-eval-source-map
 
   stats: {
     colors: true,
@@ -52,7 +51,7 @@ module.exports = {
         use: [{
           loader: MiniCssExtractPlugin.loader
         },
-          'css-loader', 'sass-loader']
+        'css-loader', 'sass-loader']
       }, {
         test: /\.(woff|woff2|eot|ttf|otf|svg)$/,
         loader: 'file-loader?limit=8192&name=font/[name].[ext]'
@@ -60,24 +59,33 @@ module.exports = {
     ]
   },
   optimization: {
+    splitChunks: {
+      cacheGroups: {
+        commons: {
+          test: /[\\/]node_modules[\\/]/,
+          name: 'vendor',
+          chunks: 'all',
+        }
+      }
+    },
     minimizer: DEBUG
       ? []
       : [
-          new UglifyJsPlugin({
-            cache: true,
-            parallel: true,
-            uglifyOptions: {
-              compress: true,
-              output: {
-                comments: false
-              },
-              ecma: 6,
-              mangle: true
+        new UglifyJsPlugin({
+          cache: true,
+          parallel: true,
+          uglifyOptions: {
+            compress: true,
+            output: {
+              comments: false
             },
-            extractComments: false,
-            sourceMap: false
-          })
-        ]
+            ecma: 6,
+            mangle: true
+          },
+          extractComments: false,
+          sourceMap: false
+        })
+      ]
   },
   plugins: [
     new HtmlWebpackPlugin({

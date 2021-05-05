@@ -7,7 +7,7 @@ import { css } from '@emotion/core'
 import constants from '../constants'
 
 function Bold(props) {
-  const { initStatus, editor, theme, pureMenu = false } = props
+  const { menusStatus, editor, theme, pureMenu = false } = props
   const themeConfig = theme.config
   const menuIconTheme = css({
     color: getCSS(themeConfig.button.fontColor),
@@ -32,7 +32,7 @@ function Bold(props) {
   return (
     <div className="bold">
       <i
-        className={`menu-icon-bold ` + (initStatus.bold ? 'active': '')}
+        className={`menu-icon-bold ` + (menusStatus.bold ? 'active': '')}
         css={menuIconTheme}
         onClick={boldClick}
         title='字体粗细'
@@ -42,7 +42,7 @@ function Bold(props) {
 }
 const mapStateToProps = (state, ownProps) => {
   return {
-    initStatus: state.menuItemStatus,
+    menusStatus: state.menusStatus,
     editor: state.editor,
   }
 }

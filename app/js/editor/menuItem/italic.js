@@ -7,7 +7,7 @@ import { css } from '@emotion/core'
 import constants from '../constants'
 
 function Italic(props) {
-  const { editor, initStatus, theme, pureMenu = false } = props
+  const { editor, menusStatus, theme, pureMenu = false } = props
   const themeConfig = theme.config
   const menuIconTheme = css({
     color: getCSS(themeConfig.button.fontColor),
@@ -32,7 +32,7 @@ function Italic(props) {
   return (
     <div className="italic">
       <i
-        className={`menu-icon-italic ` + (initStatus.italic ? 'active': '')}
+        className={`menu-icon-italic ` + (menusStatus.italic ? 'active': '')}
         css={menuIconTheme}
         onClick={italicClick}
       ></i>
@@ -41,7 +41,7 @@ function Italic(props) {
 }
 const mapStateToProps = (state, ownProps) => {
   return {
-    initStatus: state.menuItemStatus,
+    menusStatus: state.menusStatus,
     editor: state.editor,
   }
 }

@@ -8,7 +8,7 @@ import { css } from '@emotion/core'
 import Menus from '../editor/menus'
 
 function TextEditor(props) {
-  const { theme, updateEditorAction, updateMenuItemAction, updateMenuValueAction } = props
+  const { theme, updateEditor, updateMenuItem, updateMenuValue } = props
   const themeConfig = theme.config
   const toolbarRef = useRef()
   const textContainerRef = useRef()
@@ -21,14 +21,14 @@ function TextEditor(props) {
       textEditorRef.current
     )
     editor.create()
-    updateEditorAction(editor)
-    function saveRange() {
+    updateEditor(editor)
+    const saveRange = () => {
       // 随时保存选区
       editor.selection.saveRange()
       // 更新按钮 ative 状态
       const curStatus = editor.changeMenuItemStatus()
-      updateMenuItemAction(curStatus.status)
-      updateMenuValueAction(curStatus.vals)
+      updateMenuItem(curStatus.status)
+      updateMenuValue(curStatus.vals)
     }
     const textElem = editor.textElem
     // 按键后保存
@@ -49,10 +49,9 @@ function TextEditor(props) {
     'color': getCSS(themeConfig.input.color),
     'borderColor': `${getCSS(themeConfig.input.borderColorTop)} ${getCSS(
       themeConfig.input.borderColorRight
-    )} 
-      ${getCSS(themeConfig.input.borderColorBottom)} ${getCSS(
-  themeConfig.input.borderColorLeft
-)}`,
+    )} ${getCSS(themeConfig.input.borderColorBottom)} ${getCSS(
+      themeConfig.input.borderColorLeft
+    )}`,
     '&:not(.disabled):focus': {
       borderColor: getCSS(themeConfig.input.active.borderColor)
     },
@@ -82,9 +81,9 @@ const mapStateToProps = () => {
 }
 
 const mapDispatchToProps = {
-  updateEditorAction: Actions.updateEditor,
-  updateMenuItemAction: Actions.updateMenuItem,
-  updateMenuValueAction: Actions.updateMenuValue,
+  updateEditor: Actions.updateEditor,
+  updateMenuItem: Actions.updateMenuItem,
+  updateMenuValue: Actions.updateMenuValue,
 }
 export default withThemeContext(
   connect(mapStateToProps, mapDispatchToProps)(TextEditor)

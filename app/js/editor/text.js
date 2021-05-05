@@ -14,7 +14,7 @@ export default class Text {
   html(val) {
     let editor = this.editor
     let textElem = editor.$textElem
-    let html = void 0
+    let html
     if (val == null) {
       html = textElem.innerHTML
       // 未选中任何内容的时候点击“加粗”或者“斜体”等按钮，就得需要一个空的占位符 &#8203 ，这里替换掉
@@ -87,7 +87,7 @@ export default class Text {
     }
 
     // 将回车之后生成的非 <p> 的顶级标签，改为 <p>
-    function pHandle(e) {
+    function pHandle() {
       const selectionElem = editor.selection.getSelectionContainerElem()
       const parentElem = selectionElem.parentNode
 
@@ -98,7 +98,7 @@ export default class Text {
         return
       }
 
-      if (!parentElem == textElem) {
+      if (!parentElem === textElem) {
         // 不是顶级标签
         return
       }
@@ -133,7 +133,7 @@ export default class Text {
       if (!selectionElem) {
         return
       }
-      let parentElem = selectionElem.parent()
+      let parentElem = selectionElem.parentNode
       let selectionNodeName = selectionElem.nodeName
       let parentNodeName = parentElem.nodeName
 
@@ -169,7 +169,7 @@ export default class Text {
       // 处理：回车时，不能插入 <br> 而是插入 \n ，因为是在 pre 标签里面
       editor.cmd.execCmd('insertHTML', '\n')
       editor.selection.saveRange()
-      if (editor.selection.getRange().startOffset == _startOffset) {
+      if (editor.selection.getRange().startOffset === _startOffset) {
         // 没起作用，再来一遍
         editor.cmd.execCmd('insertHTML', '\n')
       }
@@ -216,7 +216,7 @@ export default class Text {
       if (e.keyCode !== 8) {
         return
       }
-      let div = void 0
+      let div
       let txtHtml = textElem.innerHTML.toLowerCase().trim()
 
       // firefox 时用 txtHtml === '<br>' 判断，其他用 !txtHtml 判断
@@ -376,7 +376,7 @@ export default class Text {
       if (!selectionElem) {
         return
       }
-      let parentElem = selectionElem.parent()
+      let parentElem = selectionElem.parentElement
       let selectionNodeName = selectionElem.nodeName
       let parentNodeName = parentElem.nodeName
 
@@ -397,7 +397,7 @@ export default class Text {
     let textElem = editor.textElem
 
     // 为图片增加 selected 样式
-    textElem.addEventListener('click', function (e) {
+    textElem.addEventListener('click', function () {
       let img = this
 
       if (img.getAttribute('data-w-e') === '1') {

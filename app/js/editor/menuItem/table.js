@@ -11,7 +11,7 @@ import RadioBoxGroup from '../../components/radioboxGroup'
 import Button from '../../components/button'
 
 function Table(props) {
-  const { initVal, initStatus, theme } = props
+  const { menusVal, menusStatus, theme } = props
   const themeConfig = theme.config
   const menuIconTheme = css({
     color: getCSS(themeConfig.button.fontColor),
@@ -48,13 +48,13 @@ function Table(props) {
       ></i>
       <Modal
         isShow={show}
-        title={initStatus.table ? '编辑表格': '插入表格'}
+        title={menusStatus.table ? '编辑表格': '插入表格'}
         width={600}
         onOk={handleOk}
         onCancel={handleCancel}
         modalRoot={tableRef.current? tableRef.current: null}
       >
-        {!initStatus.table &&
+        {!menusStatus.table &&
           <Fragment >
             <Input placeholder='行' value={row} className='table-input'
               onChange={(e) => {setRow(e.target.value)}}/>
@@ -75,7 +75,7 @@ function Table(props) {
               onChange={(e) => {setTitle(e.target.value)}}/>
           </Fragment>
         }
-        {initStatus.table &&
+        {menusStatus.table &&
           <Fragment >
             <Button label='添加行'></Button>
             <Button label='删除行'></Button>
@@ -90,7 +90,7 @@ function Table(props) {
 }
 const mapStateToProps = (state, ownProps) => {
   return {
-    initStatus: state.menuItemStatus,
+    menusStatus: state.menusStatus,
     editor: state.editor,
   }
 }

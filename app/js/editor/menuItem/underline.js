@@ -1,16 +1,13 @@
-import React, { useState, useEffect, useRef, Fragment } from 'react'
-import { render } from 'react-dom'
 import { connect } from 'react-redux'
 import withThemeContext from '../../hoc/withThemeContext'
 import { getCSS } from '../../utils/utils'
 import { css } from '@emotion/core'
-import constants from '../constants'
 
 function Underline(props) {
-  const { initVal, initStatus, theme, pureMenu = false } = props
+  const { menusStatus, theme } = props
   const themeConfig = theme.config
   const menuIconTheme = css({
-    color: getCSS(themeConfig.button.fontColor),
+    'color': getCSS(themeConfig.button.fontColor),
     '&:hover': {
       color: getCSS(themeConfig.button.active.fontColor)
     },
@@ -18,9 +15,9 @@ function Underline(props) {
       color: getCSS(themeConfig.button.visible.fontColor)
     }
   })
-  const italicClick = (e) => {
+  const italicClick = () => {
     let isSeleEmpty = editor.selection.isSelectionEmpty()
-    if(isSeleEmpty) {
+    if (isSeleEmpty) {
       editor.selection.createEmptyRange()
     }
     editor.cmd.execCmd('underline')
@@ -32,16 +29,16 @@ function Underline(props) {
   return (
     <div className="underline">
       <i
-        className={`menu-icon-underline ` + (initStatus.underline ? 'active': '')}
+        className={`menu-icon-underline ` + (menusStatus.underline ? 'active' : '')}
         css={menuIconTheme}
         onClick={italicClick}
       ></i>
     </div>
-  ) 
+  )
 }
-const mapStateToProps = (state, ownProps) => {
+const mapStateToProps = (state) => {
   return {
-    initStatus: state.menuItemStatus,
+    menusStatus: state.menusStatus,
     editor: state.editor,
   }
 }

@@ -2,9 +2,7 @@ import config from './config'
 import Command from './command'
 import Selection from './selection'
 import Text from './text'
-// import Menus from './menus'
 let editorId = 0
-
 export default class Editor {
   constructor(toolbarElem, textContainerElem, textElem) {
     this.id = `editor${editorId++}`
@@ -39,7 +37,7 @@ export default class Editor {
       return
     }
     let nodeName = selectionELem.nodeName
-    if (nodeName == 'A') {
+    if (nodeName === 'A') {
       curStatus.status.link = true
     }
     let headReg = /^h/i
@@ -55,13 +53,13 @@ export default class Editor {
     }
     if (headReg.test(cmdHeadValue)) {
       curStatus.status.head = true
-      curStatus.vals.headVal = `<${cmdHeadValue}>`
+      curStatus.vals.headVal = cmdHeadValue
     }
     if (cmdListValue) {
       curStatus.status.list = true
       curStatus.vals.listVal = cmdListValue
     }
-    if (cmdBoldValue == 'true') {
+    if (cmdBoldValue === 'true') {
       curStatus.status.bold = true
     }
     if (cmdItalicValue) {

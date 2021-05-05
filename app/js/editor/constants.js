@@ -40,11 +40,11 @@ export default {
     redo: <Redo></Redo>,
   },
   headOptions: [
-    { label: 'H1', value: '<h1>' },
-    { label: 'H2', value: '<h2>' },
-    { label: 'H3', value: '<h3>' },
-    { label: 'H4', value: '<h4>' },
-    { label: '正文', value: '<p>' },
+    { label: 'H1', value: 'h1' },
+    { label: 'H2', value: 'h2' },
+    { label: 'H3', value: 'h3' },
+    { label: 'H4', value: 'h4' },
+    { label: '正文', value: 'p' },
   ],
   fontOptions: [
     { label: 'x-small', value: '1' },

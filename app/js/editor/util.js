@@ -14,8 +14,8 @@ function isContain(elem, child) {
 function getPasteHtml(e, filterStyle, ignoreImg) {
   let clipboardData =
     e.clipboardData || (e.originalEvent && e.originalEvent.clipboardData)
-  let pasteText = void 0,
-    pasteHtml = void 0
+  let pasteText,
+    pasteHtml
   if (clipboardData == null) {
     pasteText = window.clipboardData && window.clipboardData.getData('text')
   } else {
@@ -68,7 +68,7 @@ function replaceHtmlSymbol(html) {
 function getPasteText(e) {
   let clipboardData =
     e.clipboardData || (e.originalEvent && e.originalEvent.clipboardData)
-  let pasteText = void 0
+  let pasteText
   if (clipboardData == null) {
     pasteText = window.clipboardData && window.clipboardData.getData('text')
   } else {
